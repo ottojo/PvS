@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{listings}
+
+
+\title{PVS Blatt 1}
+\author{Jonas Otto}
+\date{April 2018}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{1. a)}
+
+\begin{tabular}{c c c c}
+                    & hungry            & food      & legs          \\\hline
+    Class Animal    & sichtbar          & sichtbar  & nicht sichtbar\\
+    Class Bird      & nicht sichtbar    & sichtbar  & sichtbar      \\
+    Class Eagle     & nicht sichtbar    & sichtbar  & sichtbar
+\end{tabular}
+
+\paragraph{1. b)}
+Overloading: Funktion \glqq fly\grqq in Eagle, \\
+Overriding: Funktion eat in Bird überschreibt/implementiert abstrakte Funktion eat in Animal
+
+\paragraph{1. c)}
+\begin{enumerate}
+    \item Erlaubt, instanziiert neues Objekt \glqq ara\grqq vom Typ Bird\\
+    \item Erlaubt, \glqq 32\grqq wird ausgegeben\\
+    \item Als explizites casting erlaubt, führt aber zur Runtime zu einer Exception, da ara nicht vom Typ Eagle ist.\\
+    \item Erlaubt (explizites downcasting)\\
+    \item Erlaubt, \glqq 32\grqq wird ausgegeben.\\
+    \item Erlaubt, instanziiert neues Objekt \glqq burn\grqq vom Typ Eagle\\
+    \item Nicht erlaubt, da fly(int) in Eagle private ist.\\
+\end{enumerate}
+\end{document}
