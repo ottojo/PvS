@@ -2,7 +2,7 @@ package de.uulm.blatt2.aufgabe1;
 
 import java.util.Objects;
 
-public class MyDate implements Comparable {
+public class MyDate implements Comparable<MyDate> {
     private int day;
     private int month;
     private int year;
@@ -12,7 +12,6 @@ public class MyDate implements Comparable {
         this.month = month;
         this.year = year;
     }
-
 
     @Override
     public String toString() {
@@ -31,7 +30,6 @@ public class MyDate implements Comparable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(day, month, year);
     }
 
@@ -48,14 +46,12 @@ public class MyDate implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        MyDate myDate = (MyDate) o;
-
-        if (myDate.equals(this)) return 0;
-        if (year < myDate.year) return -1;
-        if (year > myDate.year) return 1;
-        if (month < myDate.month) return -1;
-        if (month > myDate.month) return 1;
-        return day < myDate.day ? -1 : 1;
+    public int compareTo(MyDate o) {
+        if (o.equals(this)) return 0;
+        if (year < o.year) return -1;
+        if (year > o.year) return 1;
+        if (month < o.month) return -1;
+        if (month > o.month) return 1;
+        return day < o.day ? -1 : 1;
     }
 }
