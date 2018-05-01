@@ -2,10 +2,19 @@ package de.uulm.blatt2.aufgabe2;
 
 import de.uulm.blatt2.aufgabe1.MyDate;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        /*
+        Liste: Kann sortiert werden, da es sich um eine geordnete Liste handelt
+        Collection: Kann auch z.B ein ungeordnetes "Set" sein
+         */
+
         List<MyDate> list = new LinkedList<>();
         list.add(new MyDate(1, 2, 1000));
         list.add(new MyDate(4, 8, 99));
