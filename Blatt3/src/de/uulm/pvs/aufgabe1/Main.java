@@ -1,13 +1,12 @@
 package de.uulm.pvs.aufgabe1;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame("Das Alter");
-        frame.setPreferredSize(new Dimension(300, 200));
+        frame.setSize(300, 200);
         JLabel myLabel = new JLabel("<html><i>Das Alter ist ein höflich' Mann:<br>" +
                 "Einmal übers andre klopft er an;<br>" +
                 "Aber nun sagt niemand: Herein!<br>" +
