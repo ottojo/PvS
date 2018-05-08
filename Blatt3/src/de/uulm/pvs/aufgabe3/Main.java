@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         /*
-        Calculating the Sum of all lines in the file "bigInput.txt" in the current
+        Calculating the sum of all lines in the file "bigInput.txt" in the current
         directory using Scanner and FileInputStream.
         */
         try {
@@ -27,7 +27,7 @@ public class Main {
         }
 
         /*
-        Calculating the Sum of all lines in the file "bigInput.txt" in the current
+        Calculating the sum of all lines in the file "bigInput.txt" in the current
         directory using BufferedReader and FileReader, parsing using Integer.parseInt().
         */
         try {
@@ -53,7 +53,7 @@ public class Main {
         /*
         Scanner braucht deutlich länger, da er zum einen einen kleineren Buffer von 1KB (BufferedReader: 8KB) hat,
         und weil Scanner während dem Einlesen bereits versucht, die Eingabe zu parsen, was nicht sehr effizient ist.
-        Bei der IMplementierung mit BufferedReader hingegen wird jeweils eine Zeile gelesen und diese dann geparst.
+        Bei der Implementierung mit BufferedReader hingegen wird jeweils eine Zeile gelesen und diese dann geparst.
          */
     }
 }

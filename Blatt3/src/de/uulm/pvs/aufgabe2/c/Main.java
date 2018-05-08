@@ -1,4 +1,4 @@
-package de.uulm.pvs.aufgabe2.a;
+package de.uulm.pvs.aufgabe2.c;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,24 +7,21 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame myWindow = new JFrame("GridLayout Calculator");
-        myWindow.setSize(250, 200);
+        JFrame myWindow = new JFrame("FlowLayout Calculator");
+        myWindow.setSize(250, 250);
+        myWindow.getContentPane().setLayout(new FlowLayout());
 
-        // Gridlayout 5x1: 5 Zeilen (Ergebnis und 4 Zeilen Buttons)
-        myWindow.getContentPane().setLayout(new GridLayout(5, 1, 3, 3));
-
-        // Ergebnisanzeige
+        // Ergebnisanzeige als erstes Element, also links oben
         JLabel resultDisplay = new JLabel("Result here");
         myWindow.getContentPane().add(resultDisplay);
 
-        // Hinzufügen der Buttons
         String[][] labels = {{"+", "1", "2", "3"},
                 {"-", "4", "5", "6"},
                 {"x", "7", "8", "9"},
                 {":", "0", "=", "C"}};
         for (String[] row : labels) {
-            // 1x4 Zeile von Buttons
-            JPanel buttonRow = new JPanel(new GridLayout(1, 4, 3, 0));
+            // Jede Zeile Buttons als eigenes JPanel mit FlowLayout
+            JPanel buttonRow = new JPanel(new FlowLayout());
             for (String label : row) {
                 buttonRow.add(new JButton(label));
             }
