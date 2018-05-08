@@ -7,13 +7,16 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame myWindow = new JFrame();
+        JFrame myWindow = new JFrame("BorderLayout Calculator");
         myWindow.setSize(250, 200);
+
         myWindow.getContentPane().setLayout(new BorderLayout(3, 3));
 
+        // Ergebnisanzeige mit Positionierung "NORTH"
         JLabel resultDisplay = new JLabel("Result here");
         myWindow.getContentPane().add(resultDisplay, BorderLayout.NORTH);
 
+        // Buttons als 4x4 Grid
         JPanel buttonPanel = new JPanel(new GridLayout(4, 4, 3, 3));
 
         String[][] labels = {{"+", "1", "2", "3"},
@@ -28,6 +31,7 @@ public class Main {
 
         myWindow.add(buttonPanel, BorderLayout.CENTER);
 
+        // WindowListener für korrektes Beenden des Programms
         myWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {

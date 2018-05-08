@@ -7,10 +7,11 @@ import java.awt.event.WindowEvent;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame myWindow = new JFrame();
+        JFrame myWindow = new JFrame("FlowLayout Calculator");
         myWindow.setSize(250, 250);
         myWindow.getContentPane().setLayout(new FlowLayout());
 
+        // Ergebnisanzeige als erstes Element, also links oben
         JLabel resultDisplay = new JLabel("Result here");
         myWindow.getContentPane().add(resultDisplay);
 
@@ -19,6 +20,7 @@ public class Main {
                 {"x", "7", "8", "9"},
                 {":", "0", "=", "C"}};
         for (String[] row : labels) {
+            // Jede Zeile Buttons als eigenes JPanel mit FlowLayout
             JPanel buttonRow = new JPanel(new FlowLayout());
             for (String label : row) {
                 buttonRow.add(new JButton(label));
@@ -26,6 +28,7 @@ public class Main {
             myWindow.getContentPane().add(buttonRow);
         }
 
+        // WindowListener für korrektes Beenden des Programms
         myWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
