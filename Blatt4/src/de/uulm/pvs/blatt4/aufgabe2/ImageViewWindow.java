@@ -65,20 +65,18 @@ public class ImageViewWindow extends JFrame {
         bottomButtonRow.add(loadFromFileButton);
         JButton loadFromURLButton = new JButton("Bild aus URL laden");
         loadFromURLButton.addActionListener(e -> {
-            URLInputDialog urlInputDialog = new URLInputDialog();
-            urlInputDialog.addOnSelectedListener(u -> {
-                try {
-                    BufferedImage newPicture = ImageIO.read(new URL(u));
-                    setPicture(newPicture);
-                } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Fehler beim Laden aus URL: " + exception.toString(),
-                            "Fehler",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            });
-            urlInputDialog.setVisible(true);
+            String url = JOptionPane.showInputDialog("Please enter URL");
+
+            try {
+                BufferedImage newPicture = ImageIO.read(new URL(url));
+                setPicture(newPicture);
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Fehler beim Laden aus URL: " + exception.toString(),
+                        "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         });
         bottomButtonRow.add(loadFromURLButton);
         getContentPane().add(bottomButtonRow, BorderLayout.PAGE_END);
