@@ -2,3 +2,7 @@
 */.idea
 *.iml
 */*.zip
+*.eml
+*.classpath
+*/*.project
+*.userlibraries
