@@ -16,6 +16,7 @@ public class Main {
         comboboxFrame.getContentPane().setLayout(new FlowLayout());
         comboboxFrame.getContentPane().setBackground(Color.RED);
 
+        // Group containing the color options
         ButtonGroup buttonGroup = new ButtonGroup();
 
         // Create JRadioButton for each Color
@@ -29,6 +30,7 @@ public class Main {
             comboboxFrame.getContentPane().add(button);
         });
 
+        // Exit program on window close
         comboboxFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

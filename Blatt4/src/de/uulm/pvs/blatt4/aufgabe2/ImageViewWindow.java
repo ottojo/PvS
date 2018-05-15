@@ -1,20 +1,19 @@
 package de.uulm.pvs.blatt4.aufgabe2;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class ImageViewWindow extends JFrame {
 
     private JLabel thumbnailPictureLabel = new JLabel();
     private JLabel fullPictureLabel = new JLabel();
+    private JButton loadFromFileButton;
+    private JButton loadFromURLButton;
 
     public ImageViewWindow() {
         setTitle("Bildanzeige");
@@ -30,54 +29,10 @@ public class ImageViewWindow extends JFrame {
 
         // Bottom Buttons
         JPanel bottomButtonRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton loadFromFileButton = new JButton("Bild aus Datei laden");
-        loadFromFileButton.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.addChoosableFileFilter(new FileFilter() {
-                @Override
-                public boolean accept(File f) {
-                    return f.getName().toLowerCase().endsWith(".jpg") || f.getName().endsWith(".png") || f.getName().endsWith(".bmp");
-                }
-
-                @Override
-                public String getDescription() {
-                    return "JPG, PNG, BMP Bilder.";
-                }
-            });
-
-            fileChooser.addActionListener(fileChooserAction -> {
-                try {
-                    BufferedImage newPicture = ImageIO.read(fileChooser.getSelectedFile());
-                    setPicture(newPicture);
-                } catch (IOException exception) {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Fehler beim Lesen der Datei: " + exception.toString(),
-                            "Fehler",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-
-
-            });
-
-            fileChooser.showOpenDialog(this);
-        });
+        loadFromFileButton = new JButton("Bild aus Datei laden");
+        //loadFromFileButton.addActionListener(;
         bottomButtonRow.add(loadFromFileButton);
-        JButton loadFromURLButton = new JButton("Bild aus URL laden");
-        loadFromURLButton.addActionListener(e -> {
-            String url = JOptionPane.showInputDialog("Please enter URL");
-
-            try {
-                BufferedImage newPicture = ImageIO.read(new URL(url));
-                setPicture(newPicture);
-            } catch (Exception exception) {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Fehler beim Laden aus URL: " + exception.toString(),
-                        "Fehler",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        });
+        loadFromURLButton = new JButton("Bild aus URL laden");
         bottomButtonRow.add(loadFromURLButton);
         getContentPane().add(bottomButtonRow, BorderLayout.PAGE_END);
 
@@ -97,7 +52,15 @@ public class ImageViewWindow extends JFrame {
         getContentPane().add(imagePanel, BorderLayout.CENTER);
     }
 
-    public void setPicture(BufferedImage image) throws IOException {
+    void addLoadFromFileButtonActionListener(ActionListener l) {
+        loadFromFileButton.addActionListener(l);
+    }
+
+    void addLoadFromUrlButtonActionListener(ActionListener l) {
+        loadFromURLButton.addActionListener(l);
+    }
+
+    void setPicture(BufferedImage image) throws IOException {
         if (image == null) throw new IOException("Not an image");
         setThumbnail(image);
         setFullPicture(image);

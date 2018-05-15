@@ -17,12 +17,15 @@ public class Main {
 
         JComboBox<ColorWithName> comboBox = new JComboBox<>(ColorWithName.RGB);
 
+        // Listener for Combobox
         comboBox.addActionListener(e -> {
+            // Set Window Color to selected color
             if (comboBox.getSelectedItem() != null)
                 comboboxFrame.getContentPane().setBackground(((ColorWithName) comboBox.getSelectedItem()).color);
         });
         comboboxFrame.getContentPane().add(comboBox);
 
+        // Exit program on window close
         comboboxFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
