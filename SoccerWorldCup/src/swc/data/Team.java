@@ -43,6 +43,70 @@ public class Team implements Comparable<Team> {
         this.played = 0;
         this.won = 0;
         this.loss = 0;
-        this.draw = 0   ;
+        this.draw = 0;
+    }
+
+    public String getStrName() {
+        return strName;
+    }
+
+    public void setStrName(String strName) {
+        this.strName = strName;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getGf() {
+        return gf;
+    }
+
+    public void setGf(int gf) {
+        this.gf = gf;
+    }
+
+    public int getGa() {
+        return ga;
+    }
+
+    public void setGa(int ga) {
+        this.ga = ga;
+    }
+
+    public int getPlayed() {
+        return played;
+    }
+
+    public void setPlayed(int played) {
+        this.played = played;
+    }
+
+    public int getWon() {
+        return won;
+    }
+
+    public void setWon(int won) {
+        this.won = won;
+    }
+
+    public int getLoss() {
+        return loss;
+    }
+
+    public void setLoss(int loss) {
+        this.loss = loss;
+    }
+
+    public int getDraw() {
+        return draw;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
     }
 }

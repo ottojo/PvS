@@ -24,8 +24,16 @@ public class Group {
         return teams;
     }
 
+    public void setTeams(Vector<Team> teams) {
+        this.teams = teams;
+    }
+
     public Vector<Game> getGames() {
         return games;
+    }
+
+    public void setGames(Vector<Game> games) {
+        this.games = games;
     }
 
     public String getStrGroupName() {
