@@ -22,6 +22,10 @@ public class Team implements Comparable<Team> {
         this.draw = draw;
     }
 
+    public Team() {
+
+    }
+
     @Override
     public int compareTo(Team o) {
         if (o.points > points)
@@ -46,11 +50,11 @@ public class Team implements Comparable<Team> {
         this.draw = 0;
     }
 
-    public String getStrName() {
+    public String getName() {
         return strName;
     }
 
-    public void setStrName(String strName) {
+    public void setName(String strName) {
         this.strName = strName;
     }
 
