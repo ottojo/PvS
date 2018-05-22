@@ -11,8 +11,8 @@ public class Mainframe extends JFrame {
     private SoccerWC worldCup;
 
     public Mainframe(SoccerWC worldCup) throws HeadlessException {
+        super("Soccer World Cup");
         this.worldCup = worldCup;
-
 
         setSize(500, 500);
 

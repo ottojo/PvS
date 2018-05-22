@@ -12,7 +12,7 @@ public class EditGroupDialog extends JDialog {
 
     public EditGroupDialog(Window owner, String currentGroupTitle) {
         super(owner, "Edit Group");
-        setSize(300, 130);
+        setModal(true);
         getContentPane().setLayout(new GridLayout(2, 1));
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel label = new JLabel("Titel:");
@@ -43,6 +43,10 @@ public class EditGroupDialog extends JDialog {
         buttonPanel.add(cancelButton);
         getContentPane().add(inputPanel);
         getContentPane().add(buttonPanel);
+
+        pack();
+        setLocationRelativeTo(getOwner());
+        setResizable(false);
     }
 
     public void addOnSuccessfulEditListener(OnSuccessfulEditListener listener) {
