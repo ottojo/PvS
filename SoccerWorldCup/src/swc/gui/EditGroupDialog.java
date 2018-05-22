@@ -34,11 +34,14 @@ public class EditGroupDialog extends JDialog {
                 dispose();
             }
         });
+        inputField.addActionListener(e -> applyButton.doClick());
+
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> {
             cancelListeners.forEach(OnCancelListener::cancel);
             dispose();
         });
+
         buttonPanel.add(applyButton);
         buttonPanel.add(cancelButton);
         getContentPane().add(inputPanel);
