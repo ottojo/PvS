@@ -32,6 +32,22 @@ public class CtrlGroup {
 			return new ImageIcon("default");
 		return new ImageIcon(imgUrl);
 	}
+	
+	public static ImageIcon[] getDefaultIcons() {
+		URL imgUrl = null;
+		ImageIcon [] icons = new ImageIcon [5];
+		imgUrl = CtrlGroup.class.getResource("/data/icon/document-open.png");
+		icons[0] = new ImageIcon(imgUrl);
+		imgUrl = CtrlGroup.class.getResource("/data/icon/list-add.png");
+		icons[1] = new ImageIcon(imgUrl);
+		imgUrl = CtrlGroup.class.getResource("/data/icon/document-properties.png");
+		icons[2] = new ImageIcon(imgUrl);
+		imgUrl = CtrlGroup.class.getResource("/data/icon/document-save.png");
+		icons[3] = new ImageIcon(imgUrl);
+		imgUrl = CtrlGroup.class.getResource("/data/icon/document-print.png");
+		icons[4] = new ImageIcon(imgUrl);		
+		return icons;
+	}
 
 	public static Image getMainWindowIcon(Toolkit tk) {
 		URL imgUrl = CtrlGroup.class.getResource("/data/icon/icon1.png");

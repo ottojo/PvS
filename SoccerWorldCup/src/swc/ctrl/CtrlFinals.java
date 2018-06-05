@@ -8,11 +8,44 @@ import java.net.URL;
 import java.util.Vector;
 
 import swc.data.Game;
+import swc.data.Group;
 import swc.data.SoccerWC;
 import swc.data.Team;
 
 public class CtrlFinals {
 
+	public static String getStatus(SoccerWC worldCup) {
+		int count = 0;
+		for (Group g : worldCup.getGroups()) {
+			for (Game game : g.getGames()) {
+				if(game.isPlayed())
+					count++;
+			}
+		}
+		for (Game g: worldCup.getFinals().getRoundOf16()){
+			if(g.isPlayed())
+				count++;
+		}	
+		for (Game g: worldCup.getFinals().getQuarterFinals()){
+			if(g.isPlayed())
+				count++;
+		}
+		for (Game g: worldCup.getFinals().getSemiFinals()){
+			if(g.isPlayed())
+				count++;
+		}
+		if(worldCup.getFinals().getThirdGame().isPlayed())
+			count++;
+		if(worldCup.getFinals().getFinalGame().isPlayed())
+			count++;
+		if(count >= 48 && count < 64)
+			return "" + count + " played, finals ongoing.";
+		if(count == 64){
+			return "" + count + " played, World Cup completed!";
+		}	
+		return "" + count + " played, group phase ongoing.";
+	}
+	
 	public static void createDefaultFinals(SoccerWC worldCup) throws NumberFormatException, IOException {
 		BufferedReader br = null;
 		try {
