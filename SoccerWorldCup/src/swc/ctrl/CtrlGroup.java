@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
@@ -130,4 +131,54 @@ public class CtrlGroup {
 		}
 		CtrlFinals.createDefaultFinals(worldCup);
 	}	
+
+    public static void calculateGroupTable(Group group) {
+        for (Team team : group.getTeams()) {
+            team.clearTeam();
+            for (Game game : group.getGames()) {
+                if (game.isPlayed()) {
+                    if (game.getTeamH().equals(team) || game.getTeamG().equals(team)) {
+
+                        team.setPlayed(team.getPlayed() + 1);
+
+                        if (game.getGoalsG() == game.getGoalsH()) {
+                            // +1P bei Gleichstand
+                            team.setPoints(team.getPoints() + 1);
+                            team.setGf(team.getGf() + game.getGoalsG());
+                            team.setGa(team.getGa() + game.getGoalsG());
+                            team.setDraw(team.getDraw() + 1);
+                        } else if (game.getTeamH().equals(team)) {
+                            // Team ist TeamH
+
+                            if (game.getGoalsH() > game.getGoalsG()) {
+                                //Won
+                                team.setPoints(team.getPoints() + 3);
+                                team.setWon(team.getWon() + 1);
+                            } else {
+                                team.setLoss(team.getLoss() + 1);
+                            }
+
+                            team.setGf(team.getGf() + game.getGoalsH());
+                            team.setGa(team.getGa() + game.getGoalsG());
+                        } else if (game.getTeamG().equals(team)) {
+                            // Team ist TeamG
+
+                            if (game.getGoalsG() > game.getGoalsH()) {
+                                //Won
+                                team.setPoints(team.getPoints() + 3);
+                                team.setWon(team.getWon() + 1);
+                            } else {
+                                team.setLoss(team.getLoss() + 1);
+                            }
+
+                            team.setGf(team.getGf() + game.getGoalsG());
+                            team.setGa(team.getGa() + game.getGoalsH());
+                        }
+                    }
+                }
+            }
+        }
+
+        Collections.sort(group.getTeams());
+    }
 }
