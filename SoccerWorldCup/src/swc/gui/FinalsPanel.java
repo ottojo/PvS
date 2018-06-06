@@ -22,6 +22,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+import swc.ctrl.CtrlFinals;
 import swc.ctrl.CtrlGroup;
 import swc.data.Final;
 import swc.data.Game;
@@ -571,6 +572,7 @@ public class FinalsPanel extends JPanel {
 							egd.setVisible(true);
 							if(egd.wasSuccessful()){
 								parent.createHeadLine();
+								parent.updateFinals();
 							}
 						}
 					}
@@ -598,6 +600,7 @@ public class FinalsPanel extends JPanel {
 							egd.setVisible(true);
 							if(egd.wasSuccessful()){
 								parent.createHeadLine();
+								parent.updateFinals();
 							}
 						}
 					}
@@ -625,6 +628,7 @@ public class FinalsPanel extends JPanel {
 							egd.setVisible(true);
 							if(egd.wasSuccessful()){
 								parent.createHeadLine();
+								parent.updateFinals();
 							}
 						}
 					}
@@ -652,6 +656,7 @@ public class FinalsPanel extends JPanel {
 							egd.setVisible(true);
 							if(egd.wasSuccessful()){
 								parent.createHeadLine();
+								parent.updateFinals();
 							}
 						}
 					}
@@ -679,6 +684,7 @@ public class FinalsPanel extends JPanel {
 							egd.setVisible(true);
 							if(egd.wasSuccessful()){
 								parent.createHeadLine();
+								parent.updateFinals();
 							}
 						}
 					}

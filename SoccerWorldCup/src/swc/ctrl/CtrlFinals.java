@@ -141,7 +141,6 @@ public class CtrlFinals {
     public static void calculateFinals(SoccerWC worldCup) {
         worldCup.getGroups().forEach(CtrlGroup::calculateGroupTable);
 
-        Vector<Game> roundOf16 = new Vector<>(8);
         for (int i = 0; i < 8; i++) {
             Game game = new Game();
             game.setTeamH(worldCup.getGroups().get(i < 4 ? 2 * i : 2 * (i - 4) + 1).getTeams().get(0));
@@ -150,17 +149,26 @@ public class CtrlFinals {
             // If this game has not changed, do not reset it thank you very much
             if (game.getTeamG().equals(worldCup.getFinals().getRoundOf16().get(i).getTeamG())
                     && game.getTeamH().equals(worldCup.getFinals().getRoundOf16().get(i).getTeamH()))
-                game = worldCup.getFinals().getRoundOf16().get(i);
+                continue;
 
-            roundOf16.add(game);
+            Game g = worldCup.getFinals().getRoundOf16().get(i);
+            g.setTeamH(game.getTeamH());
+            g.setTeamG(game.getTeamG());
+            g.setPlayed(false);
+            g.setGoalsG(0);
+            g.setGoalsH(0);
         }
-        worldCup.getFinals().setRoundOf16(roundOf16);
 
-        Vector<Game> quarterFinals = new Vector<>();
         for (int i = 0; i < 4; i++) {
 
             if (!worldCup.getFinals().getRoundOf16().get(2 * i).isPlayed() || !worldCup.getFinals().getRoundOf16().get((2 * i) + 1).isPlayed()) {
-                quarterFinals.add(new Game());
+                Game g = worldCup.getFinals().getQuarterFinals().get(i);
+                g.setPlayed(false);
+                g.setTeamH(null);
+                g.setTeamG(null);
+                g.setPlayed(false);
+                g.setGoalsG(0);
+                g.setGoalsH(0);
                 continue;
             }
 
@@ -175,18 +183,27 @@ public class CtrlFinals {
 
             if (winner1.equals(worldCup.getFinals().getQuarterFinals().get(i).getTeamH())
                     && winner2.equals(worldCup.getFinals().getQuarterFinals().get(i).getTeamG()))
-                newGame = g;
+                continue;
 
-            quarterFinals.add(newGame);
+            Game gameToUpdate = worldCup.getFinals().getQuarterFinals().get(i);
+            gameToUpdate.setTeamH(newGame.getTeamH());
+            gameToUpdate.setTeamG(newGame.getTeamG());
+            gameToUpdate.setPlayed(false);
+            gameToUpdate.setGoalsG(0);
+            gameToUpdate.setGoalsH(0);
         }
 
-        worldCup.getFinals().setQuarterFinals(quarterFinals);
-
-        Vector<Game> semiFinals = new Vector<>();
 
         for (int i = 0; i < 2; i++) {
             if (!worldCup.getFinals().getQuarterFinals().get(2 * i).isPlayed() || !worldCup.getFinals().getQuarterFinals().get((2 * i) + 1).isPlayed()) {
-                semiFinals.add(new Game());
+                //Reset, can not calculate yet
+                Game g = worldCup.getFinals().getSemiFinals().get(i);
+                g.setPlayed(false);
+                g.setTeamH(null);
+                g.setTeamG(null);
+                g.setPlayed(false);
+                g.setGoalsG(0);
+                g.setGoalsH(0);
                 continue;
             }
             Game g = worldCup.getFinals().getQuarterFinals().get(2 * i);
@@ -197,27 +214,46 @@ public class CtrlFinals {
             newGame.setTeamH(winner1);
             newGame.setTeamG(winner2);
 
-            if (winner1.equals(worldCup.getFinals().getSemiFinals().get(i).getTeamH())
-                    && winner2.equals(worldCup.getFinals().getSemiFinals().get(i).getTeamG()))
-                newGame = g;
+            if (!winner1.equals(worldCup.getFinals().getSemiFinals().get(i).getTeamH())
+                    || !winner2.equals(worldCup.getFinals().getSemiFinals().get(i).getTeamG())) {
 
-            semiFinals.add(newGame);
+                Game gameToUpdate = worldCup.getFinals().getSemiFinals().get(i);
+                gameToUpdate.setTeamH(newGame.getTeamH());
+                gameToUpdate.setTeamG(newGame.getTeamG());
+                gameToUpdate.setPlayed(false);
+                gameToUpdate.setGoalsG(0);
+                gameToUpdate.setGoalsH(0);
+            }
         }
 
-        worldCup.getFinals().setSemiFinals(semiFinals);
 
-        Game finalGame = new Game();
+        Game updatedFinal = new Game();
         if (!worldCup.getFinals().getSemiFinals().get(0).isPlayed() || !worldCup.getFinals().getSemiFinals().get(1).isPlayed()) {
-            worldCup.getFinals().setFinalGame(finalGame);
+            Game g = worldCup.getFinals().getFinalGame();
+            g.setPlayed(false);
+            g.setTeamH(null);
+            g.setTeamG(null);
+            g.setPlayed(false);
+            g.setGoalsG(0);
+            g.setGoalsH(0);
+            return;
         }
         Game g = worldCup.getFinals().getSemiFinals().get(0);
         Team winner1 = g.getGoalsH() > g.getGoalsG() ? g.getTeamH() : g.getTeamG();
         g = worldCup.getFinals().getSemiFinals().get(1);
         Team winner2 = g.getGoalsH() > g.getGoalsG() ? g.getTeamH() : g.getTeamG();
-        finalGame.setTeamH(winner1);
-        finalGame.setTeamG(winner2);
+        updatedFinal.setTeamH(winner1);
+        updatedFinal.setTeamG(winner2);
 
-        worldCup.getFinals().setFinalGame(finalGame);
+
+        Game gameToUpdate = worldCup.getFinals().getFinalGame();
+        if (!(updatedFinal.getTeamG().equals(gameToUpdate.getTeamG()) && updatedFinal.getTeamH().equals(gameToUpdate.getTeamH()))) {
+            gameToUpdate.setTeamH(updatedFinal.getTeamH());
+            gameToUpdate.setTeamG(updatedFinal.getTeamG());
+            gameToUpdate.setPlayed(false);
+            gameToUpdate.setGoalsG(0);
+            gameToUpdate.setGoalsH(0);
+        }
 
     }
 }

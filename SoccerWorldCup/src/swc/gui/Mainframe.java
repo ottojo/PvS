@@ -272,7 +272,7 @@ public class Mainframe extends javax.swing.JFrame {
 		tabContainer.addTab("Finals", fsp);
 		tabContainer.addChangeListener(e -> {
 			if (tabContainer.getSelectedComponent().equals(fsp)){
-				CtrlFinals.calculateFinals(worldCup);
+				updateFinals();
 			}
 		});
 	}
@@ -280,6 +280,11 @@ public class Mainframe extends javax.swing.JFrame {
 	public void createHeadLine() {
 		wcName.setText(worldCup.getName());
 		wcStatus.setText(CtrlFinals.getStatus(worldCup));
+	}
+
+	public void updateFinals(){
+		CtrlFinals.calculateFinals(worldCup);
+		finals.drawMatches();
 	}
 
 	/**
