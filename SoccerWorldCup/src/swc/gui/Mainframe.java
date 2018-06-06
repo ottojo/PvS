@@ -28,6 +28,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import swc.ctrl.CtrlFinals;
 import swc.ctrl.CtrlGroup;
@@ -268,6 +270,11 @@ public class Mainframe extends javax.swing.JFrame {
 		finals.setPreferredSize(new Dimension(600, 760));
 		fsp.setViewportView(finals);
 		tabContainer.addTab("Finals", fsp);
+		tabContainer.addChangeListener(e -> {
+			if (tabContainer.getSelectedComponent().equals(fsp)){
+				CtrlFinals.calculateFinals(worldCup);
+			}
+		});
 	}
 
 	public void createHeadLine() {
