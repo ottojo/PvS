@@ -18,6 +18,7 @@ import swc.data.Group;
 import swc.data.SoccerWC;
 import swc.data.Team;
 
+
 public class CtrlGroup {
 	
 	public static ImageIcon getFlagIcon(String name){	
@@ -130,55 +131,45 @@ public class CtrlGroup {
 			i++;
 		}
 		CtrlFinals.createDefaultFinals(worldCup);
-	}	
+	}
 
-    public static void calculateGroupTable(Group group) {
-        for (Team team : group.getTeams()) {
-            team.clearTeam();
-            for (Game game : group.getGames()) {
-                if (game.isPlayed()) {
-                    if (game.getTeamH().equals(team) || game.getTeamG().equals(team)) {
-
-                        team.setPlayed(team.getPlayed() + 1);
-
-                        if (game.getGoalsG() == game.getGoalsH()) {
-                            // +1P bei Gleichstand
-                            team.setPoints(team.getPoints() + 1);
-                            team.setGf(team.getGf() + game.getGoalsG());
-                            team.setGa(team.getGa() + game.getGoalsG());
-                            team.setDraw(team.getDraw() + 1);
-                        } else if (game.getTeamH().equals(team)) {
-                            // Team ist TeamH
-
-                            if (game.getGoalsH() > game.getGoalsG()) {
-                                //Won
-                                team.setPoints(team.getPoints() + 3);
-                                team.setWon(team.getWon() + 1);
-                            } else {
-                                team.setLoss(team.getLoss() + 1);
-                            }
-
-                            team.setGf(team.getGf() + game.getGoalsH());
-                            team.setGa(team.getGa() + game.getGoalsG());
-                        } else if (game.getTeamG().equals(team)) {
-                            // Team ist TeamG
-
-                            if (game.getGoalsG() > game.getGoalsH()) {
-                                //Won
-                                team.setPoints(team.getPoints() + 3);
-                                team.setWon(team.getWon() + 1);
-                            } else {
-                                team.setLoss(team.getLoss() + 1);
-                            }
-
-                            team.setGf(team.getGf() + game.getGoalsG());
-                            team.setGa(team.getGa() + game.getGoalsH());
-                        }
-                    }
-                }
-            }
-        }
-
-        Collections.sort(group.getTeams());
-    }
+	public static void calculateGroupTable(Group group) {
+		Team home, guest;
+		for (Team team : group.getTeams()){
+			team.clearTeam();
+		}
+		group.setGroupCompleted(true);
+		for (Game game : group.getGames()) {
+			home = game.getTeamH();
+			guest = game.getTeamG();
+			if(game.isPlayed()){
+				home.setPlayed(home.getPlayed()+1);
+				home.setGf(home.getGf()+game.getGoalsH());
+				home.setGa(home.getGa()+game.getGoalsG());
+				guest.setPlayed(guest.getPlayed()+1);
+				guest.setGf(guest.getGf()+game.getGoalsG());
+				guest.setGa(guest.getGa()+game.getGoalsH());
+				if(game.getGoalsH() > game.getGoalsG()){
+					home.setWon(home.getWon()+1);
+					home.setPoints(home.getPoints()+3);
+					guest.setLoss(guest.getLoss()+1);
+				}	
+				else if(game.getGoalsH() < game.getGoalsG()){
+					home.setLoss(home.getLoss()+1);
+					guest.setWon(guest.getWon()+1);
+					guest.setPoints(guest.getPoints()+3);
+				}	
+				else {
+					home.setDraw(home.getDraw()+1);
+					home.setPoints(home.getPoints()+1);
+					guest.setDraw(guest.getDraw()+1);
+					guest.setPoints(guest.getPoints()+1);
+				}			
+			}
+			else
+				group.setGroupCompleted(false);
+		}
+		Collections.sort(group.getTeams());
+	}
+		
 }

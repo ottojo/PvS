@@ -28,8 +28,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import swc.ctrl.CtrlFinals;
 import swc.ctrl.CtrlGroup;
@@ -60,7 +58,7 @@ public class Mainframe extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Initalizes components, listener, etc.
+	 * Initializes components, listener, etc.
 	 */
 	private void initComponents() {	
 		
@@ -104,7 +102,7 @@ public class Mainframe extends javax.swing.JFrame {
 			
 			//---- menuItemSave ----
 			menuItemSave.setText("Save");
-			menuFile.add(menuItemSave);
+		menuFile.add(menuItemSave);
 			
 			//---- menuItemSaveAs ----
 			menuItemSaveAs.setText("Save As...");
@@ -171,6 +169,7 @@ public class Mainframe extends javax.swing.JFrame {
 
 		buttonOpen = new JButton(icons[0]);
 		buttonOpen.setToolTipText("Open World Cup");
+	
 		buttonNew = new JButton(icons[1]);
 		buttonNew.setToolTipText("Create New World Cup");
 		buttonNew.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +181,7 @@ public class Mainframe extends javax.swing.JFrame {
 		//buttonEdit.setToolTipText("Edit current Group");
 		buttonSave = new JButton(icons[3]);
 		buttonSave.setToolTipText("Save World Cup");
+	
 		buttonPrint = new JButton(icons[4]);
 		buttonPrint.setToolTipText("Print current Group");
 		buttonPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -270,21 +270,11 @@ public class Mainframe extends javax.swing.JFrame {
 		finals.setPreferredSize(new Dimension(600, 760));
 		fsp.setViewportView(finals);
 		tabContainer.addTab("Finals", fsp);
-		tabContainer.addChangeListener(e -> {
-			if (tabContainer.getSelectedComponent().equals(fsp)){
-				updateFinals();
-			}
-		});
 	}
 
 	public void createHeadLine() {
 		wcName.setText(worldCup.getName());
 		wcStatus.setText(CtrlFinals.getStatus(worldCup));
-	}
-
-	public void updateFinals(){
-		CtrlFinals.calculateFinals(worldCup);
-		finals.drawMatches();
 	}
 
 	/**
@@ -302,6 +292,11 @@ public class Mainframe extends javax.swing.JFrame {
 	    setTitle("Soccer World Cup 2018");
 	    Toolkit tk = getToolkit();
 	    setIconImage(CtrlGroup.getMainWindowIcon(tk));
+	}
+
+	public void callFinalCalucalion() {
+		CtrlFinals.calculateFinals(worldCup);
+		finals.drawMatches();
 	}
 
 	/**
