@@ -1,0 +1,14 @@
+﻿a)
+	SELECT * FROM Teile WHERE Preis>10
+
+b)
+	(SELECT LiefStadt AS Stadt FROM Lieferanten) union (SELECT KdStadt AS Stadt FROM Bestellungen)
+	
+c)
+	SELECT LiefName FROM Lieferanten - SELECT LiefName FROM Lieferanten, Bestellungen WHERE LiefName == KdName
+
+d)
+	SELECT Bezeichnung FROM Teile, Bestellungen WHERE Bestellungen.TeileNr == Teile.TeileNr
+
+e)
+	SELECT Bezeichnung FROM Teile, Bestellungen, Lieferanten WHERE LiefName == "AEG" AND Bestellungen.LiefNr == Lieferanten.LiefNr AND Bestellungen.TeileNr == Teile.TeileNr AND KsStadt == "Berlin"
