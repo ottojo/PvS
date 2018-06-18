@@ -1,0 +1,133 @@
+﻿Aufgabe 1
+a) SELECT * FROM lieferanten WHERE lieferanten.LiefStadt != "München"
+b) SELECT DISTINCT TeileID FROM liefert
+c) SELECT Farbe, TeileID, Preis FROM preisliste WHERE preisliste.Preis BETWEEN 300 AND 400
+d) SELECT * FROM bestellungen WHERE bestellungen.BestDatum NOT BETWEEN 2009-02-15 AND 2009-02-23
+e) SELECT * FROM kunden WHERE kunden.KdStadt LIKE "S%"
+f) SELECT teile.TeileID, teile.Farbe, preisliste.Preis FROM teile JOIN preisliste ON teile.TeileID = preisliste.TeileID AND teile.Farbe = preisliste.Farbe
+g) SELECT mitarbeiter.Gehalt FROM mitarbeiter WHERE mitarbeiter.Funktion = "Montage II" AND mitarbeiter.Wohnort = "Ulm" ORDER BY Gehalt ASC
+h) SELECT *, auftraege.AuftrDatum + INTERVAL 3 MONTH AS Skontodatum FROM auftraege
+i) SELECT auftraege.AuftrNr, auftraege.AuftrDatum FROM auftraege WHERE DAY(auftraege.AuftrDatum) MOD 2 = 0
+j)
+SELECT *,
+(CASE
+   WHEN teile.Bestand > teile.MinBestand THEN "Überbestand" 
+   WHEN teile.Bestand = teile.MinBestand THEN "Mindestbestand" 
+   WHEN teile.Bestand < teile.MinBestand THEN "Mangel" 
+END) AS "Bestandsbewertung"
+FROM teile
+
+Aufgabe 2
+a)
+SELECT abteilungen.*, mitarbeiter.Name, mitarbeiter.Vorname, mitarbeiter.Wohnort
+FROM 
+	abteilungen JOIN mitarbeiter 
+	ON abteilungen.MgrPersNr = mitarbeiter.PersNr
+
+b)
+SELECT teile.*, lieferanten.LiefName, lieferanten.Bewertung 
+FROM 
+teile
+JOIN liefert ON teile.TeileID = liefert.TeileID AND teile.Farbe = liefert.Farbe
+JOIN lieferanten ON liefert.LiefNr = lieferanten.LiefNr
+WHERE 
+	lieferanten.Bewertung > 0
+	AND lieferanten.LiefStadt = "Ulm"
+	
+c)
+SELECT 
+auftragspos.AuftrNr,
+auftragspos.TeileID,
+auftragspos.Anzahl,
+auftragspos.Farbe
+FROM
+auftragspos
+JOIN auftraege ON auftragspos.AuftrNr = auftraege.AuftrNr
+JOIN kunden ON auftraege.KdNr = kunden.KdNr
+WHERE
+kunden.KdName = "Dehling"
+
+d)
+SELECT
+lieferanten.*,
+COUNT(*) AS "Anzahl Bestellungen"
+FROM
+lieferanten
+JOIN bestellungen ON lieferanten.LiefNr = bestellungen.LiefNr
+GROUP BY lieferanten.LiefNr
+
+e)
+SELECT kunden.*
+FROM
+kunden
+JOIN auftraege ON kunden.KdNr = auftraege.KdNr
+GROUP BY kunden.KdNr
+
+f)
+SELECT AVG(mitarbeiter.Gehalt)
+FROM mitarbeiter
+JOIN abteilungen ON mitarbeiter.AbtNr = abteilungen.AbtNr
+WHERE abteilungen.AbtName = "Lager"
+
+g)
+SELECT *
+FROM mitarbeiter AS m
+WHERE
+m.PersNr NOT IN (SELECT abteilungen.MgrPersNr FROM abteilungen)
+AND NOT EXISTS (
+    SELECT * FROM mitarbeiter AS m2
+    WHERE m2.Gehalt > m.Gehalt
+    AND m2.PersNr NOT IN (SELECT abteilungen.MgrPersNr FROM abteilungen))
+	
+h)
+SELECT auftraege.AuftrNr, SUM(auftragspos.Anzahl * preisliste.Preis) AS Betrag
+FROM auftraege
+JOIN auftragspos ON auftraege.AuftrNr = auftragspos.AuftrNr
+JOIN preisliste ON auftragspos.TeileID = preisliste.TeileID AND auftragspos.Farbe = preisliste.Farbe
+GROUP BY auftragspos.AuftrNr
+
+i)
+SELECT *, COUNT(auftragspos.Pos) AS Positionen
+FROM auftraege
+JOIN auftragspos WHERE auftraege.AuftrNr = auftragspos.AuftrNr
+GROUP BY auftragspos.AuftrNr
+
+j)
+SELECT DISTINCT k1.KdName AS "Kunde 1 Name", k2.KdName AS "Kunde 2 Name", k1.KdStadt
+FROM kunden AS k1
+JOIN kunden AS k2 ON k1.KdStadt = k2.KdStadt AND k1.KdNr < k2.KdNr
+ORDER BY k1.KdStadt
+
+k)
+SELECT liefert.LiefNr,
+	teile.TeileID,
+	teile.Farbe,
+	teile.KalkKosten,
+	liefert.Preis, 
+	(teile.KalkKosten - liefert.Preis) AS Ersparnis
+FROM teile
+JOIN liefert ON teile.TeileID = liefert.TeileID AND teile.Farbe = liefert.Farbe
+WHERE liefert.Preis < teile.KalkKosten
+
+l)
+Left Outer Join:
+SELECT lieferanten.*
+FROM lieferanten
+LEFT OUTER JOIN kunden ON lieferanten.LiefName = kunden.KdName
+WHERE kunden.KdNr IS NULL
+
+Korellierte Sub-Query:
+SELECT lieferanten.*
+FROM lieferanten
+WHERE NOT EXISTS (SELECT * FROM kunden WHERE kunden.KdName = lieferanten.LiefName)
+
+m)
+Mit korelliertem Sub-Query:
+SELECT teile.TeileID, teile.Farbe
+FROM teile
+WHERE NOT EXISTS (SELECT * FROM auftragspos WHERE auftragspos.TeileID = teile.TeileID AND auftragspos.Farbe = teile.Farbe)
+
+Mit unkorelliertem Sub-Query:
+SELECT teile.TeileID, teile.Farbe
+FROM teile
+WHERE (teile.TeileID, teile.Farbe) NOT IN (SELECT TeileID, Farbe FROM auftragspos)
