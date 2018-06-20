@@ -291,11 +291,11 @@ public class Mainframe extends javax.swing.JFrame {
 			String filename;
 			JFileChooser chooser = new JFileChooser();
 			// setting up the file filter
-			FileFilter csvFileFilter = new FileNameExtensionFilter(
-					"Comma Separated Values (.csv)", "csv");
-			chooser.addChoosableFileFilter(csvFileFilter);
+			FileFilter xmlFilter = new FileNameExtensionFilter(
+					"XML FIle (.xml)", "xml");
+			chooser.addChoosableFileFilter(xmlFilter);
 			chooser.setAcceptAllFileFilterUsed(false);
-			chooser.setFileFilter(csvFileFilter); // default filter
+			chooser.setFileFilter(xmlFilter); // default filter
 
 			int returnVal = chooser.showSaveDialog(this);
 
@@ -380,8 +380,8 @@ public class Mainframe extends javax.swing.JFrame {
 	}
 
 	protected void menuItemLoadWCActionPerformed(ActionEvent e) {
-		FileFilter csvFileFilter = new FileNameExtensionFilter(
-				"Comma Separated Values (.csv)", "csv");
+		FileFilter xmlFilter = new FileNameExtensionFilter(
+				"XML Files (.xml)", "xml");
 		if (!(worldCup.getName() == null)) {
 			int ok = JOptionPane.showConfirmDialog(null,
 					"Open new World Cup? Unsaved changes will be lost!",
@@ -389,9 +389,9 @@ public class Mainframe extends javax.swing.JFrame {
 			if (ok == JOptionPane.YES_OPTION) {
 				String filename;
 				JFileChooser chooser = new JFileChooser();
-				chooser.addChoosableFileFilter(csvFileFilter);
+				chooser.addChoosableFileFilter(xmlFilter);
 				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setFileFilter(csvFileFilter); // default filter
+				chooser.setFileFilter(xmlFilter); // default filter
 
 				int returnVal = chooser.showOpenDialog(this);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -418,7 +418,7 @@ public class Mainframe extends javax.swing.JFrame {
 		} else {
 			String filename;
 			JFileChooser chooser = new JFileChooser();
-			chooser.addChoosableFileFilter(csvFileFilter);
+			chooser.addChoosableFileFilter(xmlFilter);
 			chooser.setAcceptAllFileFilterUsed(false);
 			int returnVal = chooser.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {

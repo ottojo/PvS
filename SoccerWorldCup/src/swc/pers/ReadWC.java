@@ -293,5 +293,9 @@ public class ReadWC {
 		
 		in.close();
 	}
+
+	public static void readFromXML(String filename, SoccerWC worldCup) {
+
+	}
 	
 }
