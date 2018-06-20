@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SoccerWC>
+  <Name>bla</Name>
+  <Groups>
+    <Group>
+      <Name>Group A</Name>
+      <Teams>
+        <Team name="Uruguay" />
+        <Team name="Russia" />
+        <Team name="Egypt" />
+        <Team name="Saudi Arabia" />
+      </Teams>
+      <Games>
+        <Game id="1">
+          <TeamH>Russia</TeamH>
+          <TeamG>Saudi Arabia</TeamG>
+          <GoalsH>1</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>14/06</Date>
+          <Location>Moscow</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="2">
+          <TeamH>Egypt</TeamH>
+          <TeamG>Uruguay</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>2</GoalsG>
+          <Date>15/06</Date>
+          <Location>Yekaterinburg</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="17">
+          <TeamH>Russia</TeamH>
+          <TeamG>Egypt</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>19/06</Date>
+          <Location>Saint Petersburg</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="18">
+          <TeamH>Uruguay</TeamH>
+          <TeamG>Saudi Arabia</TeamG>
+          <GoalsH>4</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>20/06</Date>
+          <Location>Rostov-on-Don</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="33">
+          <TeamH>Uruguay</TeamH>
+          <TeamG>Russia</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>25/06</Date>
+          <Location>Samara</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="34">
+          <TeamH>Saudi Arabia</TeamH>
+          <TeamG>Egypt</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>5</GoalsG>
+          <Date>25/06</Date>
+          <Location>Volgograd</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group B</Name>
+      <Teams>
+        <Team name="Morocco" />
+        <Team name="Iran" />
+        <Team name="Portugal" />
+        <Team name="Spain" />
+      </Teams>
+      <Games>
+        <Game id="3">
+          <TeamH>Portugal</TeamH>
+          <TeamG>Spain</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>15/06</Date>
+          <Location>Sochi</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="4">
+          <TeamH>Morocco</TeamH>
+          <TeamG>Iran</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>15/06</Date>
+          <Location>Saint Petersburg</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="19">
+          <TeamH>Portugal</TeamH>
+          <TeamG>Morocco</TeamG>
+          <GoalsH>4</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>20/06</Date>
+          <Location>Moscow</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="20">
+          <TeamH>Iran</TeamH>
+          <TeamG>Spain</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>20/06</Date>
+          <Location>Kazan</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="35">
+          <TeamH>Iran</TeamH>
+          <TeamG>Portugal</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>25/06</Date>
+          <Location>Saransk</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="36">
+          <TeamH>Spain</TeamH>
+          <TeamG>Morocco</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>67</GoalsG>
+          <Date>25/06</Date>
+          <Location>Kaliningrad</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group C</Name>
+      <Teams>
+        <Team name="Denmark" />
+        <Team name="France" />
+        <Team name="Australia" />
+        <Team name="Peru" />
+      </Teams>
+      <Games>
+        <Game id="5">
+          <TeamH>France</TeamH>
+          <TeamG>Australia</TeamG>
+          <GoalsH>12</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>16/06</Date>
+          <Location>Kazan</Location>
+          <Time>12:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="6">
+          <TeamH>Peru</TeamH>
+          <TeamG>Denmark</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>4</GoalsG>
+          <Date>16/06</Date>
+          <Location>Saransk</Location>
+          <Time>18:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="21">
+          <TeamH>France</TeamH>
+          <TeamG>Peru</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>21/06</Date>
+          <Location>Yekaterinburg</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="22">
+          <TeamH>Denmark</TeamH>
+          <TeamG>Australia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>21/06</Date>
+          <Location>Samara</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="37">
+          <TeamH>Denmark</TeamH>
+          <TeamG>France</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>26/06</Date>
+          <Location>Moscow</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="38">
+          <TeamH>Australia</TeamH>
+          <TeamG>Peru</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>26/06</Date>
+          <Location>Sochi</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group D</Name>
+      <Teams>
+        <Team name="Iceland" />
+        <Team name="Nigeria" />
+        <Team name="Croatia" />
+        <Team name="Argentina" />
+      </Teams>
+      <Games>
+        <Game id="7">
+          <TeamH>Argentina</TeamH>
+          <TeamG>Iceland</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>3</GoalsG>
+          <Date>16/06</Date>
+          <Location>Moscow</Location>
+          <Time>15:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="8">
+          <TeamH>Croatia</TeamH>
+          <TeamG>Nigeria</TeamG>
+          <GoalsH>4</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>16/06</Date>
+          <Location>Kaliningrad</Location>
+          <Time>21:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="23">
+          <TeamH>Argentina</TeamH>
+          <TeamG>Croatia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>21/06</Date>
+          <Location>Nizhny Novgorod</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="24">
+          <TeamH>Nigeria</TeamH>
+          <TeamG>Iceland</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>22/06</Date>
+          <Location>Volgograd</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="39">
+          <TeamH>Nigeria</TeamH>
+          <TeamG>Argentina</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>26/06</Date>
+          <Location>Saint Petersburg</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="40">
+          <TeamH>Iceland</TeamH>
+          <TeamG>Croatia</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>26/06</Date>
+          <Location>Rostov-on-Don</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group E</Name>
+      <Teams>
+        <Team name="Brazil" />
+        <Team name="Serbia" />
+        <Team name="Costa Rica" />
+        <Team name="Switzerland" />
+      </Teams>
+      <Games>
+        <Game id="9">
+          <TeamH>Brazil</TeamH>
+          <TeamG>Switzerland</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>17/06</Date>
+          <Location>Rostov-on-Don</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="10">
+          <TeamH>Costa Rica</TeamH>
+          <TeamG>Serbia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>17/06</Date>
+          <Location>Samara</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="25">
+          <TeamH>Brazil</TeamH>
+          <TeamG>Costa Rica</TeamG>
+          <GoalsH>0</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>22/06</Date>
+          <Location>Saint Petersburg</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="26">
+          <TeamH>Serbia</TeamH>
+          <TeamG>Switzerland</TeamG>
+          <GoalsH>412</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>22/06</Date>
+          <Location>Kaliningrad</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="41">
+          <TeamH>Serbia</TeamH>
+          <TeamG>Brazil</TeamG>
+          <GoalsH>1</GoalsH>
+          <GoalsG>1</GoalsG>
+          <Date>27/06</Date>
+          <Location>Moscow</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="42">
+          <TeamH>Switzerland</TeamH>
+          <TeamG>Costa Rica</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>27/06</Date>
+          <Location>Nizhny Novgorod</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group F</Name>
+      <Teams>
+        <Team name="Germany" />
+        <Team name="South Korea" />
+        <Team name="Mexico" />
+        <Team name="Sweden" />
+      </Teams>
+      <Games>
+        <Game id="11">
+          <TeamH>Germany</TeamH>
+          <TeamG>Mexico</TeamG>
+          <GoalsH>420</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>17/06</Date>
+          <Location>Moscow</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="12">
+          <TeamH>Sweden</TeamH>
+          <TeamG>South Korea</TeamG>
+          <GoalsH>23</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>18/06</Date>
+          <Location>Nizhny Novgorod</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="27">
+          <TeamH>Germany</TeamH>
+          <TeamG>Sweden</TeamG>
+          <GoalsH>1337</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>23/06</Date>
+          <Location>Sochi</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="28">
+          <TeamH>South Korea</TeamH>
+          <TeamG>Mexico</TeamG>
+          <GoalsH>123</GoalsH>
+          <GoalsG>4</GoalsG>
+          <Date>23/06</Date>
+          <Location>Rostov-on-Don</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="43">
+          <TeamH>South Korea</TeamH>
+          <TeamG>Germany</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>27/06</Date>
+          <Location>Kazan</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="44">
+          <TeamH>Mexico</TeamH>
+          <TeamG>Sweden</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>27/06</Date>
+          <Location>Yekaterinburg</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group G</Name>
+      <Teams>
+        <Team name="England" />
+        <Team name="Belgium" />
+        <Team name="Tunisia" />
+        <Team name="Panama" />
+      </Teams>
+      <Games>
+        <Game id="13">
+          <TeamH>Belgium</TeamH>
+          <TeamG>Panama</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>18/06</Date>
+          <Location>Sochi</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="14">
+          <TeamH>Tunisia</TeamH>
+          <TeamG>England</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>18/06</Date>
+          <Location>Volgograd</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="29">
+          <TeamH>Belgium</TeamH>
+          <TeamG>Tunisia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>23/06</Date>
+          <Location>Moscow</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="30">
+          <TeamH>England</TeamH>
+          <TeamG>Panama</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>24/06</Date>
+          <Location>Nizhny Novgorod</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="45">
+          <TeamH>England</TeamH>
+          <TeamG>Belgium</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>28/06</Date>
+          <Location>Kaliningrad</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="46">
+          <TeamH>Panama</TeamH>
+          <TeamG>Tunisia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>28/06</Date>
+          <Location>Saransk</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+    <Group>
+      <Name>Group H</Name>
+      <Teams>
+        <Team name="Poland" />
+        <Team name="Japan" />
+        <Team name="Senegal" />
+        <Team name="Colombia" />
+      </Teams>
+      <Games>
+        <Game id="15">
+          <TeamH>Poland</TeamH>
+          <TeamG>Senegal</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>19/06</Date>
+          <Location>Moscow</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="16">
+          <TeamH>Colombia</TeamH>
+          <TeamG>Japan</TeamG>
+          <GoalsH>4</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>19/06</Date>
+          <Location>Saransk</Location>
+          <Time>14:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="31">
+          <TeamH>Poland</TeamH>
+          <TeamG>Colombia</TeamG>
+          <GoalsH>62</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>24/06</Date>
+          <Location>Kazan</Location>
+          <Time>17:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="32">
+          <TeamH>Japan</TeamH>
+          <TeamG>Senegal</TeamG>
+          <GoalsH>3</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>24/06</Date>
+          <Location>Yekaterinburg</Location>
+          <Time>20:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="47">
+          <TeamH>Japan</TeamH>
+          <TeamG>Poland</TeamG>
+          <GoalsH>5</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>28/06</Date>
+          <Location>Volgograd</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+        <Game id="48">
+          <TeamH>Senegal</TeamH>
+          <TeamG>Colombia</TeamG>
+          <GoalsH>2</GoalsH>
+          <GoalsG>0</GoalsG>
+          <Date>28/06</Date>
+          <Location>Samara</Location>
+          <Time>16:00</Time>
+          <IsPlayed>true</IsPlayed>
+        </Game>
+      </Games>
+    </Group>
+  </Groups>
+  <Finals>
+    <RoundOf16>
+      <Game id="49">
+        <TeamH>Uruguay</TeamH>
+        <TeamG>Iran</TeamG>
+        <GoalsH>2</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>30/06</Date>
+        <Location>Sochi</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="50">
+        <TeamH>Denmark</TeamH>
+        <TeamG>Nigeria</TeamG>
+        <GoalsH>21</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>30/06</Date>
+        <Location>Kazan</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="51">
+        <TeamH>Iceland</TeamH>
+        <TeamG>France</TeamG>
+        <GoalsH>0</GoalsH>
+        <GoalsG>4</GoalsG>
+        <Date>01/07</Date>
+        <Location>Moscow</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="52">
+        <TeamH>Morocco</TeamH>
+        <TeamG>Russia</TeamG>
+        <GoalsH>2</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>01/07</Date>
+        <Location>Nizhny Novgorod</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="53">
+        <TeamH>Brazil</TeamH>
+        <TeamG>South Korea</TeamG>
+        <GoalsH>3</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>02/07</Date>
+        <Location>Samara</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="54">
+        <TeamH>England</TeamH>
+        <TeamG>Japan</TeamG>
+        <GoalsH>3</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>02/07</Date>
+        <Location>Rostov-on-Don</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="55">
+        <TeamH>Germany</TeamH>
+        <TeamG>Serbia</TeamG>
+        <GoalsH>7</GoalsH>
+        <GoalsG>1</GoalsG>
+        <Date>03/07</Date>
+        <Location>Saint Petersburg</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="56">
+        <TeamH>Poland</TeamH>
+        <TeamG>Belgium</TeamG>
+        <GoalsH>1</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>03/07</Date>
+        <Location>Moscow</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+    </RoundOf16>
+    <Quarterfinals>
+      <Game id="57">
+        <TeamH>Brazil</TeamH>
+        <TeamG>England</TeamG>
+        <GoalsH>2</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>06/07</Date>
+        <Location>Nizhny Novgorod</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="58">
+        <TeamH>Uruguay</TeamH>
+        <TeamG>Denmark</TeamG>
+        <GoalsH>4</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>06/07</Date>
+        <Location>Kazan</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="59">
+        <TeamH>Morocco</TeamH>
+        <TeamG>France</TeamG>
+        <GoalsH>3</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>07/07</Date>
+        <Location>Sochi</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="60">
+        <TeamH>Germany</TeamH>
+        <TeamG>Poland</TeamG>
+        <GoalsH>10</GoalsH>
+        <GoalsG>0</GoalsG>
+        <Date>07/07</Date>
+        <Location>Samara</Location>
+        <Time>16:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+    </Quarterfinals>
+    <Semifinals>
+      <Game id="61">
+        <TeamH>Uruguay</TeamH>
+        <TeamG>Brazil</TeamG>
+        <GoalsH>0</GoalsH>
+        <GoalsG>4</GoalsG>
+        <Date>10/07</Date>
+        <Location>Saint Petersburg</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+      <Game id="62">
+        <TeamH>Morocco</TeamH>
+        <TeamG>Germany</TeamG>
+        <GoalsH>2</GoalsH>
+        <GoalsG>4</GoalsG>
+        <Date>11/07</Date>
+        <Location>Moscow</Location>
+        <Time>20:00</Time>
+        <IsPlayed>true</IsPlayed>
+      </Game>
+    </Semifinals>
+    <ThirdGame id="63">
+      <TeamH>Uruguay</TeamH>
+      <TeamG>Morocco</TeamG>
+      <GoalsH>1</GoalsH>
+      <GoalsG>0</GoalsG>
+      <Date>14/07</Date>
+      <Location>Saint Petersburg</Location>
+      <Time>16:00</Time>
+      <IsPlayed>true</IsPlayed>
+    </ThirdGame>
+    <FinalGame id="64">
+      <TeamH>Brazil</TeamH>
+      <TeamG>Germany</TeamG>
+      <GoalsH>1</GoalsH>
+      <GoalsG>7</GoalsG>
+      <Date>15/07</Date>
+      <Location>Moscow</Location>
+      <Time>17:00</Time>
+      <IsPlayed>true</IsPlayed>
+    </FinalGame>
+    <Winner>Germany</Winner>
+  </Finals>
+</SoccerWC>

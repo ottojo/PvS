@@ -1,5 +1,6 @@
 package swc.pers;
 
+import org.jdom2.DataConversionException;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -298,6 +299,15 @@ public class ReadWC {
         in.close();
     }
 
+    /**
+     * Reads {@link SoccerWC} from XML File
+     *
+     * @param filename File Name of XML FIle
+     * @param worldCup World Cup to save the data to
+     * @throws IOException   if File reading throws error
+     * @throws JDOMException if XML is malformatted
+     * @author Jonas Otto
+     */
     public static void readFromXML(String filename, SoccerWC worldCup) throws IOException, JDOMException {
         if (worldCup == null) worldCup = new SoccerWC();
 
@@ -320,34 +330,94 @@ public class ReadWC {
                         0, 0, 0, 0, 0, 0, 0));
 
             // Games
-            Element gamesElement = groupElement.getChild("Games");
-            for (Element gameElement : gamesElement.getChildren()) {
-                g.addGame(new Game(
-                        gameElement.getAttribute("id").getIntValue(),
-                        gameElement.getChild("Date").getValue(),
-                        gameElement.getChild("Time").getValue(),
-                        gameElement.getChild("Location").getValue(),
-                        getTeamByName(gameElement.getChild("TeamH").getValue(), g.getTeams()),
-                        getTeamByName(gameElement.getChild("TeamG").getValue(), g.getTeams()),
-                        Integer.parseInt(gameElement.getChild("GoalsH").getValue()),
-                        Integer.parseInt(gameElement.getChild("GoalsG").getValue()),
-                        Boolean.parseBoolean(gameElement.getChild("IsPlayed").getValue())
-                ));
-            }
+            readGameList(groupElement.getChild("Games"), g.getTeams()).forEach(g::addGame);
 
             CtrlGroup.calculateGroupTable(g);
             worldCup.addGroup(g);
-
         }
 
-
+        // Finals
+        Element finalsElement = rootElement.getChild("Finals");
+        worldCup.getFinals().
+                setRoundOf16(readGameList(finalsElement.getChild("RoundOf16"), getAllTeams(worldCup.getGroups())));
+        worldCup.getFinals()
+                .setQuarterFinals(readGameList(finalsElement.getChild("Quarterfinals"), getAllTeams(worldCup.getGroups())));
+        worldCup.getFinals()
+                .setSemiFinals(readGameList(finalsElement.getChild("Semifinals"), getAllTeams(worldCup.getGroups())));
+        worldCup.getFinals()
+                .setThirdGame(readGame(finalsElement.getChild("ThirdGame"), getAllTeams(worldCup.getGroups())));
+        worldCup.getFinals().
+                setFinalGame(readGame(finalsElement.getChild("FinalGame"), getAllTeams(worldCup.getGroups())));
+        worldCup.getFinals().setWinner(finalsElement.getChild("Winner").getValue());
     }
 
+    /**
+     * Iterates over a list of {@link Team} to find a Team with specified name
+     *
+     * @param name  Name of Team to find
+     * @param teams List of available teams
+     * @return Team that has matching name, new Team with matching name if no team from list matches
+     * @author Jonas Otto
+     */
     private static Team getTeamByName(String name, List<Team> teams) {
         for (Team t : teams)
             if (Objects.equals(t.getName(), name))
                 return t;
-        return null;
+        return new Team(name, 0, 0, 0, 0, 0, 0, 0);
+    }
+
+    /**
+     * Reads an XML Element that contains multiple {@link Game}s
+     *
+     * @param gamesElement XML Element
+     * @param teams        List of Teams to assign proper Team to Game
+     * @return List of decoded Teams
+     * @throws DataConversionException if game id is not an integer
+     * @author Jonas Otto
+     */
+    private static Vector<Game> readGameList(Element gamesElement, List<Team> teams) throws DataConversionException {
+        Vector<Game> games = new Vector<>();
+        for (Element gameElement : gamesElement.getChildren()) {
+            games.add(readGame(gameElement, teams));
+        }
+
+        return games;
+    }
+
+    /**
+     * Read an XML encoded {@link Game}
+     *
+     * @param gameElement XML Element
+     * @param teams       List of Teams to assign proper Team to Game
+     * @return Decoded {@link Game}
+     * @throws DataConversionException if game id is not an integer
+     * @author Jonas Otto
+     */
+    private static Game readGame(Element gameElement, List<Team> teams) throws DataConversionException {
+        return new Game(
+                gameElement.getAttribute("id").getIntValue(),
+                gameElement.getChild("Date").getValue(),
+                gameElement.getChild("Time").getValue(),
+                gameElement.getChild("Location").getValue(),
+                getTeamByName(gameElement.getChild("TeamH").getValue(), teams),
+                getTeamByName(gameElement.getChild("TeamG").getValue(), teams),
+                Integer.parseInt(gameElement.getChild("GoalsH").getValue()),
+                Integer.parseInt(gameElement.getChild("GoalsG").getValue()),
+                Boolean.parseBoolean(gameElement.getChild("IsPlayed").getValue()));
+    }
+
+    /**
+     * Concatenates all teams from a list of {@link Group}s into one list
+     *
+     * @param groups List of Groups
+     * @return All teams from the groups
+     * @author Jonas Otto
+     */
+    private static Vector<Team> getAllTeams(Vector<Group> groups) {
+        Vector<Team> teams = new Vector<>();
+        for (Group g : groups)
+            teams.addAll(g.getTeams());
+        return teams;
     }
 
 }
