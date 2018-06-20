@@ -193,7 +193,8 @@ public class WriteWC {
                 new Element("GoalsG").addContent(game.getGoalsG() + ""),
                 new Element("Date").addContent(game.getDate()),
                 new Element("Location").addContent(game.getLocation()),
-                new Element("Time").addContent(game.getTime())
+                new Element("Time").addContent(game.getTime()),
+                new Element("IsPlayed").addContent(game.isPlayed() + "")
         ));
         return gameElement;
     }
