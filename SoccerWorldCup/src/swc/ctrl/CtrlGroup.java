@@ -137,8 +137,10 @@ public class CtrlGroup {
 	public static boolean saveWC(SoccerWC worldCup) {
 		String filename = worldCup.getFilename();
 		try {
-		    if (filename.toLowerCase().endsWith(".xml"))
+			if (filename.toLowerCase().endsWith(".xml"))
 				WriteWC.writeToXML(filename, worldCup);
+			else if (filename.toLowerCase().endsWith(".csv"))
+				WriteWC.writeToCSV(filename, worldCup);
 			else
 				throw new IOException("Not a valid World Cup File");
 		} catch (Exception e) {
@@ -150,10 +152,12 @@ public class CtrlGroup {
 
 	public static boolean loadFile(SoccerWC worldCup, String filename) {
 		try {
-		  if (filename.toLowerCase().endsWith(".xml"))
-				ReadWC.readFromXML(filename,worldCup);
-		  else
-			throw new IOException("Not a valid World Cup File");
+			if (filename.toLowerCase().endsWith(".xml"))
+				ReadWC.readFromXML(filename, worldCup);
+			else if (filename.toLowerCase().endsWith(".csv"))
+				ReadWC.readFromCSV(filename,worldCup);
+			else
+				throw new IOException("Not a valid World Cup File");
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			return false;

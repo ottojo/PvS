@@ -241,7 +241,8 @@ public class Mainframe extends javax.swing.JFrame {
 	}
 
 	protected void menuItemWCBettingActionPerformed(ActionEvent e) {
-
+		BettingDialog bd = new BettingDialog(this, worldCup);
+		bd.setVisible(true);
 	}
 
 	protected void buttonPrintActionPerformed(ActionEvent e) {
@@ -291,11 +292,14 @@ public class Mainframe extends javax.swing.JFrame {
 			String filename;
 			JFileChooser chooser = new JFileChooser();
 			// setting up the file filter
-			FileFilter xmlFilter = new FileNameExtensionFilter(
-					"XML FIle (.xml)", "xml");
-			chooser.addChoosableFileFilter(xmlFilter);
+			FileFilter csvFileFilter = new FileNameExtensionFilter(
+					"Comma Separated Values (.csv)", "csv");
+			FileFilter xmlFileFilter = new FileNameExtensionFilter(
+					"eXtensible Markup Language (.xml)", "xml");
+			chooser.addChoosableFileFilter(xmlFileFilter);
+			chooser.addChoosableFileFilter(csvFileFilter);
 			chooser.setAcceptAllFileFilterUsed(false);
-			chooser.setFileFilter(xmlFilter); // default filter
+			chooser.setFileFilter(csvFileFilter); // default filter
 
 			int returnVal = chooser.showSaveDialog(this);
 
@@ -380,8 +384,10 @@ public class Mainframe extends javax.swing.JFrame {
 	}
 
 	protected void menuItemLoadWCActionPerformed(ActionEvent e) {
-		FileFilter xmlFilter = new FileNameExtensionFilter(
-				"XML Files (.xml)", "xml");
+		FileFilter csvFileFilter = new FileNameExtensionFilter(
+				"Comma Separated Values (.csv)", "csv");
+		FileFilter xmlFileFilter = new FileNameExtensionFilter(
+				"eXtensible Markup Language (.xml)", "xml");
 		if (!(worldCup.getName() == null)) {
 			int ok = JOptionPane.showConfirmDialog(null,
 					"Open new World Cup? Unsaved changes will be lost!",
@@ -389,9 +395,10 @@ public class Mainframe extends javax.swing.JFrame {
 			if (ok == JOptionPane.YES_OPTION) {
 				String filename;
 				JFileChooser chooser = new JFileChooser();
-				chooser.addChoosableFileFilter(xmlFilter);
+				chooser.addChoosableFileFilter(xmlFileFilter);
+				chooser.addChoosableFileFilter(csvFileFilter);
 				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setFileFilter(xmlFilter); // default filter
+				chooser.setFileFilter(xmlFileFilter); // default filter
 
 				int returnVal = chooser.showOpenDialog(this);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -418,7 +425,8 @@ public class Mainframe extends javax.swing.JFrame {
 		} else {
 			String filename;
 			JFileChooser chooser = new JFileChooser();
-			chooser.addChoosableFileFilter(xmlFilter);
+			chooser.addChoosableFileFilter(xmlFileFilter);
+			chooser.addChoosableFileFilter(csvFileFilter);
 			chooser.setAcceptAllFileFilterUsed(false);
 			int returnVal = chooser.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
