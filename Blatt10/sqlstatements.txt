@@ -58,16 +58,3 @@ SET
     AuftragsPos.Farbe = 1
 WHERE
     AuftragsPos.Farbe = 2 AND Kunden.KdName = "Babel"
-
-
-
-
-
-
-
-
-
-
-
-
-
