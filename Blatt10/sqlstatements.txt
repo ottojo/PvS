@@ -1,7 +1,12 @@
 Aufgabe 1:
 a)
-INSERT INTO lieferanten (lieferanten.name, lieferanten.stadt, lieferanten.liefNr, lieferanten.bewertung)
-VALUES ("GmbH und KOLB AG", "Ulm", 28, 2)
+INSERT INTO lieferanten(
+    lieferanten.name,
+    lieferanten.stadt,
+    lieferanten.liefNr,
+    lieferanten.bewertung
+)
+VALUES("GmbH und KOLB AG", "Ulm", 28, 2)
 
 b)
 INSERT INTO Liefert(
@@ -20,8 +25,7 @@ FROM
 WHERE
     l.TeileID = 'K18'
 
-c)?
-//TODO
+c)
 DELETE
 FROM
     Lieferanten
@@ -36,7 +40,6 @@ WHERE
     HAVING
         COUNT(Liefert.TeileID) = 1
 )
-
 
 d)
 UPDATE
