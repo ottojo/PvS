@@ -30,6 +30,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonReader;
+import javax.json.JsonValue;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -41,7 +45,7 @@ import swc.data.SoccerWC;
 import swc.data.Tip;
 
 public class BettingDialog extends JDialog {
-	private static final long serialVersionUID = 1324234L;
+    private static final long serialVersionUID = 1324234L;
 
 	private static BorderCellRenderer createRenderer(Color color, Insets insets) {
 		BorderCellRenderer renderer = new BorderCellRenderer();
@@ -574,17 +578,32 @@ public class BettingDialog extends JDialog {
 		if (betterPin == null || betterPin.isEmpty()) {
 			return;
 		}
-		uploadTipsToServer(tips, betterEmail, betterPin);
-	}
+        uploadTipsToServer(tips, betterEmail, betterPin);
+    }
 
-	//TODO IMPLEMENT
-	private Vector<Tip> downloadTipsFromServer(String betterEmail) {
-		Vector<Tip> tips = new Vector<Tip>();
-		return tips;
-	}
+    /**
+     * Gets tips from a user from the web server
+     *
+     * @param betterEmail user email address
+     * @return tips
+     * @author Jonas Otto
+     */
+    private Vector<Tip> downloadTipsFromServer(String betterEmail) {
+        Vector<Tip> tips = new Vector<>();
+        try {
+            JsonReader jsonReader = Json.createReader(new URL("http://swc.dbis.info/api/Betting/" + betterEmail).openStream());
+            JsonArray jsonArray = jsonReader.readArray();
+            for (JsonValue value : jsonArray) {
+                tips.add(new Tip(value.asJsonObject().getInt("gameId"), value.asJsonObject().getInt("goalsHome"), value.asJsonObject().getInt("goalsGuest")));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tips;
+    }
 
-	//TODO IMPLEMENT
-	private void uploadTipsToServer(Vector<Tip> tips, String betterEmail, String betterPin) {
+    //TODO IMPLEMENT
+    private void uploadTipsToServer(Vector<Tip> tips, String betterEmail, String betterPin) {
 		
-	}
+    }
 }
