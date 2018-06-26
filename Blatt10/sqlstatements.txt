@@ -1,0 +1,70 @@
+Aufgabe 1:
+a)
+INSERT INTO lieferanten (lieferanten.name, lieferanten.stadt, lieferanten.liefNr, lieferanten.bewertung)
+VALUES ("GmbH und KOLB AG", "Ulm", 28, 2)
+
+b)
+INSERT INTO Liefert(
+    Liefert.LiefNr,
+    Liefert.Farbe,
+    Liefert.Preis,
+    Liefert.TeileID
+)
+SELECT
+    l.LiefNr,
+    l.Farbe,
+    3 * l.Preis,
+    'TL134'
+FROM
+    Liefert AS l
+WHERE
+    l.TeileID = 'K18'
+
+c)?
+//TODO
+DELETE
+FROM
+    Lieferanten
+WHERE
+    Lieferanten.LiefNr IN(
+    SELECT
+        Liefert.LiefNr
+    FROM
+        Liefert
+    GROUP BY
+        Liefert.LiefNr
+    HAVING
+        COUNT(Liefert.TeileID) = 1
+)
+
+
+d)
+UPDATE
+    Mitarbeiter
+SET
+    Mitarbeiter.Gehalt = 0.8 * Mitarbeiter.Gehalt
+WHERE
+    Mitarbeiter.Wohnort = "Ulm"
+
+e)
+UPDATE
+    AuftragsPos
+JOIN Auftraege ON AuftragsPos.AuftrNr = Auftraege.AuftrNr
+JOIN Kunden ON Auftraege.KdNr = Kunden.KdNr
+SET
+    AuftragsPos.Farbe = 1
+WHERE
+    AuftragsPos.Farbe = 2 AND Kunden.KdName = "Babel"
+
+
+
+
+
+
+
+
+
+
+
+
+
