@@ -1,8 +1,9 @@
 *.class
-*/.idea
+.idea/
 *.iml
 */*.zip
 *.eml
 *.classpath
 */*.project
 *.userlibraries
+.settings/
