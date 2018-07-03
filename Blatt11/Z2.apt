@@ -1,0 +1,38 @@
+.name "Z2"
+.type PN
+
+.places
+allow3next4
+Block0
+Block1
+Block2
+Block3
+Block4
+Block5
+Block6
+allow4next5
+allow5next6
+allow6next0
+allow0next1
+allow1next2
+allow2next3
+
+.transitions
+0
+1
+2
+3
+4
+5
+6
+
+.flows
+0: {1*allow6next0, 1*allow0next1, 1*Block0} -> {1*allow5next6, 1*allow4next5, 1*Block1}
+1: {1*Block1, 1*allow1next2, 1*allow0next1} -> {1*Block2, 1*allow5next6, 1*allow6next0}
+2: {1*Block2, 1*allow2next3, 1*allow1next2} -> {1*allow6next0, 1*allow0next1, 1*Block3}
+3: {1*allow3next4, 1*Block3, 1*allow2next3} -> {1*allow0next1, 1*Block4, 1*allow1next2}
+4: {1*allow4next5, 1*Block4, 1*allow3next4} -> {1*allow1next2, 1*allow2next3, 1*Block5}
+5: {1*allow4next5, 1*allow5next6, 1*Block5} -> {1*Block6, 1*allow3next4, 1*allow2next3}
+6: {1*Block6, 1*allow5next6, 1*allow6next0} -> {1*Block0, 1*allow3next4, 1*allow4next5}
+
+.initial_marking {1*allow3next4, 1*Block2, 1*Block4, 2*allow4next5, 2*allow5next6, 1*allow6next0}
