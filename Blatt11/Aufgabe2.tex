@@ -7,7 +7,7 @@
 
 \title{PVS Blatt 11}
 \author{Jonas Otto}
-\date{3. Juli 2018}
+\date{4. Juli 2018}
 
 \begin{document}
 
@@ -20,22 +20,16 @@
         \toprule
         Markierung & S1 & S2 & S3 & S4 & Feuernde Transitionen \\
         \midrule
-        M0 & 1 &   & 1 & 1 & \makecell{T1\textrightarrow M1 \\ T3\textrightarrow M2 \\ T4\textrightarrow M3} \\\midrule
-        M1 &   & 1 &   & 1 & \makecell{T2\textrightarrow M4 \\ T4\textrightarrow M5}\\\midrule
-        M2 &   &   & 2 & 1 & \makecell{T4\textrightarrow M6}\\\midrule
-        M3 & 2 &   & 1 &   & \makecell{T1\textrightarrow M5 \\ T3\textrightarrow M6}\\\midrule
-        M4 & 1 &   &   & 1 & \makecell{T3\textrightarrow M7 \\ T4\textrightarrow M8}\\\midrule
-        M5 & 1 & 1 &   &   & \makecell{T2\textrightarrow M8 \\ T3\textrightarrow M9}\\\midrule
-        M6 & 1 &   & 2 &   & \makecell{T1\textrightarrow M9 \\ T3\textrightarrow M10}\\\midrule
-        M7 &   &   & 1 & 1 & \makecell{T4\textrightarrow M11}\\\midrule
-        M8 & 2 &   &   &   & \makecell{T3\textrightarrow M11}\\\midrule
-        M9 &   & 1 & 1 &   & \makecell{T2\textrightarrow M11}\\\midrule
-        M10&   &   & 3 &   & -\\\midrule
-        M11& 1 &   & 1 & 0 & \makecell{T1\textrightarrow M13 \\ T3\textrightarrow M12}\\\midrule
-        M12&   &   & 2 &   & -\\\midrule
-        M13&   & 1 &   &   & \makecell{T2\textrightarrow M14}\\\midrule
-        M14& 1 &   &   &   & \makecell{T3\textrightarrow M15}\\\midrule
-        M15&   &   & 1 &   & -\\\midrule
+        M0 & 1 &   & 1 & 1 & T1\textrightarrow M1\\\midrule
+        M1 &   & 1 &   & 1 & \makecell{T4\textrightarrow M2 \\ T2\textrightarrow M3}\\\midrule
+        M2 & 1 & 1 &   &   & \makecell{T3\textrightarrow M4}\\\midrule
+        M3 & 1 &   &   & 1 & \makecell{T3\textrightarrow M5}\\\midrule
+        M4 &   & 1 & 1 &   & \makecell{T2\textrightarrow M6}\\\midrule
+        M5 &   &   & 1 & 1 & \makecell{T4\textrightarrow M6}\\\midrule
+        M6 & 1 &   & 1 &   & \makecell{T1\textrightarrow M7}\\\midrule
+        M7 &   & 1 &   &   & \makecell{T2\textrightarrow M8}\\\midrule
+        M8 & 1 &   &   &   & \makecell{T3\textrightarrow M9}\\\midrule
+        M9 &   &   & 1 &   & -\\\midrule
         \bottomrule
     \end{tabular}
     \caption{Tabelle für Erreichbarkeitsanalyse}
