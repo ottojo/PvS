@@ -41,9 +41,9 @@ public class LegoDB {
      * @return a List of the model type Auftrag
      */
     public List<Auftrag> readAuftraege() {
-        List<Auftrag> auftraege = new ArrayList<Auftrag>();
+        List<Auftrag> auftraege = new ArrayList<>();
         try {
-            PreparedStatement getAuftraege = con.prepareStatement("SELECT * FROM auftragsds");
+            PreparedStatement getAuftraege = con.prepareStatement("SELECT * FROM AuftragsDS");
             ResultSet resultSet = getAuftraege.executeQuery();
             while (resultSet.next()) {
                 auftraege.add(new Auftrag(
@@ -84,9 +84,9 @@ public class LegoDB {
 
         try (
                 PreparedStatement createAuftragStatement = con.prepareStatement(
-                        "INSERT INTO auftragsds(AuftrNr, KdNr, KdAuftrNr, KdAuftrDatum) VALUES (?, ?, ?, ?)");
+                        "INSERT INTO AuftragsDS (AuftrNr, KdNr, KdAuftrNr, KdAuftrDatum) VALUES (?, ?, ?, ?)");
                 PreparedStatement createPosStatement = con.prepareStatement(
-                        "INSERT INTO auftragsposds(AuftrNr, AuftrPos, TeileID, Farbe, AnzVonKundeBestellt) VALUES (?,?,?,?,?)")
+                        "INSERT INTO AuftragsPosDS (AuftrNr, AuftrPos, TeileID, Farbe, AnzVonKundeBestellt) VALUES (?,?,?,?,?)")
 
         ) {
             // Auftrag
@@ -132,7 +132,7 @@ public class LegoDB {
 
         List<Auftragsposition> auftragspositions = new ArrayList<>();
         try (PreparedStatement getAuftragsPos = con.prepareStatement(
-                "SELECT * FROM auftragsposds WHERE AuftrNr = ?"
+                "SELECT * FROM AuftragsPosDS WHERE AuftrNr = ?"
         )) {
             getAuftragsPos.setInt(1, auftragsnummer);
             ResultSet resultSet = getAuftragsPos.executeQuery();
@@ -169,7 +169,7 @@ public class LegoDB {
      */
     public boolean checkValidTeil(String teileID, int farbe) {
         try (PreparedStatement checkStatement = con.prepareStatement(
-                "SELECT * FROM teile WHERE TeileID = ? AND Farbe = ?")
+                "SELECT * FROM Teile WHERE TeileID = ? AND Farbe = ?")
         ) {
             checkStatement.setString(1, teileID);
             checkStatement.setInt(2, farbe);
@@ -192,7 +192,7 @@ public class LegoDB {
         List<Kunde> kunden = new ArrayList<>();
 
         try (
-                PreparedStatement readKundenStatement = con.prepareStatement("SELECT * FROM kunden ORDER BY KdNr")
+                PreparedStatement readKundenStatement = con.prepareStatement("SELECT * FROM Kunden ORDER BY KdNr")
         ) {
             ResultSet resultSet = readKundenStatement.executeQuery();
             while (resultSet.next())
