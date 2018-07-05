@@ -21,7 +21,30 @@ public class Mainframe extends javax.swing.JFrame {
     private ImageIcon[] icons;
     private SoccerWC worldCup;
     private FinalsPanel finals;
-
+    /**
+     * GUI Elements.
+     */
+    private JMenuBar menuBar;
+    private JMenu menuFile;
+    private JMenu menuExtra;
+    private JMenu menuHelp;
+    private JMenuItem menuItemWCBetting;
+    private JMenuItem menuItemLoadWCfromServer;
+    private JMenuItem menuItemExportCSV;
+    private JMenuItem menuItemAbout;
+    private JMenuItem menuItemLoadWC;
+    private JMenuItem menuItemNewWC;
+    private JMenuItem menuItemSave;
+    private JMenuItem menuItemSaveAs;
+    private JMenuItem menuItemExit;
+    private JTabbedPane tabContainer;
+    private JToolBar toolBar;
+    private JLabel wcName;
+    private JLabel wcStatus;
+    private JButton buttonOpen;
+    private JButton buttonNew;
+    private JButton buttonSave;
+    private JButton buttonPrint;
     public Mainframe(SoccerWC toOpen) {
 
         try {
@@ -133,10 +156,10 @@ public class Mainframe extends javax.swing.JFrame {
 
         // ---- menuItemLoadWCfromServer ----
         menuItemLoadWCfromServer.setText("Load from sever...");
-        menuItemLoadWCfromServer.addActionListener(e -> {
-            new LoadServerDialog(this, worldCup).setVisible(true);
-            initializeTabContainer();
-            callFinalCalucalion();
+        menuItemLoadWCfromServer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                menuItemLoadWCfromServerActionPerformed(e);
+            }
         });
         menuExtra.add(menuItemLoadWCfromServer);
 
@@ -222,6 +245,38 @@ public class Mainframe extends javax.swing.JFrame {
         setJMenuBar(menuBar);
         contentPane.add(toolBar, BorderLayout.PAGE_START);
         contentPane.add(tabContainer);
+    }
+
+    protected void menuItemLoadWCfromServerActionPerformed(ActionEvent e) {
+        LoadServerDialog lsd = null;
+        if (!(worldCup.getName() == null)) {
+            int ok = JOptionPane.showConfirmDialog(null,
+                    "Open new World Cup? Unsaved changes will be lost!",
+                    "Confirmation required", JOptionPane.YES_NO_OPTION);
+            if (ok == JOptionPane.YES_OPTION) {
+                lsd = new LoadServerDialog(this);
+                lsd.setVisible(true);
+            }
+        } else {
+            lsd = new LoadServerDialog(this);
+            lsd.setVisible(true);
+        }
+        if (lsd != null) {
+            if (!lsd.getUrl().equals("")) {
+                boolean ret = CtrlGroup.loadServerFile(worldCup, lsd.getUrl());
+                if (!ret) {
+                    JOptionPane.showMessageDialog(this,
+                            "An error occured on loading server file.",
+                            "Load World Cup", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                JOptionPane.showMessageDialog(this,
+                        "Loading file from server successful!",
+                        "Load World Cup", JOptionPane.INFORMATION_MESSAGE);
+                enableMenu();
+                initializeTabContainer();
+            }
+        }
     }
 
     protected void menuItemWCBettingActionPerformed(ActionEvent e) {
@@ -492,29 +547,4 @@ public class Mainframe extends javax.swing.JFrame {
         CtrlFinals.calculateFinals(worldCup);
         finals.drawMatches();
     }
-
-    /**
-     * GUI Elements.
-     */
-    private JMenuBar menuBar;
-    private JMenu menuFile;
-    private JMenu menuExtra;
-    private JMenu menuHelp;
-    private JMenuItem menuItemWCBetting;
-    private JMenuItem menuItemLoadWCfromServer;
-    private JMenuItem menuItemExportCSV;
-    private JMenuItem menuItemAbout;
-    private JMenuItem menuItemLoadWC;
-    private JMenuItem menuItemNewWC;
-    private JMenuItem menuItemSave;
-    private JMenuItem menuItemSaveAs;
-    private JMenuItem menuItemExit;
-    private JTabbedPane tabContainer;
-    private JToolBar toolBar;
-    private JLabel wcName;
-    private JLabel wcStatus;
-    private JButton buttonOpen;
-    private JButton buttonNew;
-    private JButton buttonSave;
-    private JButton buttonPrint;
 }

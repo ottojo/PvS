@@ -3,64 +3,64 @@ package swc.data;
 import java.util.Vector;
 
 
-public class SoccerWC {	
-	private Vector<Group> groups;
-	private Final finals;
-	private String name;
-	private String filename;
-	
-	public SoccerWC(String filename, String wcName) {
-		setGroups(new Vector<Group>());
-		setFinals(new Final());
-		setName(wcName);
-		setFilename(filename);
-	}
-	
-	public SoccerWC(String wcName) {
-		setGroups(new Vector<Group>());
-		setFinals(new Final());
-		setName(wcName);
-	}
-	
-	public SoccerWC() {
-		setGroups(new Vector<Group>()); 
-		setFinals(new Final());
-	}
-	
-	public void addGroup(Group toAdd) {
-		groups.add(toAdd);
-	}
+public class SoccerWC {
+    private Vector<Group> groups;
+    private Final finals;
+    private String name;
+    private String filename;
 
-	public void setGroups(Vector<Group> groups) {
-		this.groups = groups;
-	}
+    public SoccerWC(String filename, String wcName) {
+        setGroups(new Vector<Group>());
+        setFinals(new Final());
+        setName(wcName);
+        setFilename(filename);
+    }
 
-	public Vector<Group> getGroups() {
-		return groups;
-	}
+    public SoccerWC(String wcName) {
+        setGroups(new Vector<Group>());
+        setFinals(new Final());
+        setName(wcName);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public SoccerWC() {
+        setGroups(new Vector<Group>());
+        setFinals(new Final());
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void addGroup(Group toAdd) {
+        groups.add(toAdd);
+    }
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+    public Vector<Group> getGroups() {
+        return groups;
+    }
 
-	public String getFilename() {
-		return filename;
-	}
+    public void setGroups(Vector<Group> groups) {
+        this.groups = groups;
+    }
 
-	public void setFinals(Final finals) {
-		this.finals = finals;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Final getFinals() {
-		return finals;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public Final getFinals() {
+        return finals;
+    }
+
+    public void setFinals(Final finals) {
+        this.finals = finals;
+    }
 
 }

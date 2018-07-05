@@ -1,26 +1,22 @@
 package swc.gui;
 
-import org.jdom2.JDOMException;
-import swc.data.SoccerWC;
-import swc.pers.ReadWC;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class LoadServerDialog extends JDialog {
     private static final long serialVersionUID = 336345634571L;
     private String url = "http://swc.dbis.info/2018.xml";
-    private SoccerWC soccerWC;
+    private JLabel labelUrl;
+    private JTextField textFieldUrl;
+    private JButton buttonLoad;
+    private JButton buttonCancel;
 
-    public LoadServerDialog(Frame owner, SoccerWC s) {
+    public LoadServerDialog(Frame owner) {
         super(owner);
-        soccerWC = s;
         initComponents();
     }
 
@@ -87,7 +83,6 @@ public class LoadServerDialog extends JDialog {
             public void keyPressed(KeyEvent arg0) {
             }
         };
-        textFieldUrl.setText(url);
         textFieldUrl.addKeyListener(kl);
 
         pack();
@@ -96,21 +91,11 @@ public class LoadServerDialog extends JDialog {
     }
 
     private void buttonLoadActionPerformed() {
-        try {
-            new URL(textFieldUrl.getText());
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
+        if (textFieldUrl.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid URL!", "Load from server", JOptionPane.ERROR_MESSAGE);
             return;
         }
         this.url = textFieldUrl.getText();
-        try {
-            URL url = new URL(this.url);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            ReadWC.readFromXMLInputStream(con.getInputStream(), soccerWC);
-        } catch (java.io.IOException | JDOMException e) {
-            e.printStackTrace();
-        }
         this.dispose();
     }
 
@@ -118,11 +103,6 @@ public class LoadServerDialog extends JDialog {
         this.dispose();
         this.url = "";
     }
-
-    private JLabel labelUrl;
-    private JTextField textFieldUrl;
-    private JButton buttonLoad;
-    private JButton buttonCancel;
 
     public String getUrl() {
         return this.url;

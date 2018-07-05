@@ -2,107 +2,107 @@ package swc.data;
 
 public class Game {
 
-	private int intId;
-	
-	private String time;
-	private String date;
-	private String location;
-	private int goalsH;
-	private int goalsG;
-	private boolean isPlayed;
-	
-	private Team teamH;
-	private Team teamG;
-	
-	// Constructor with internal game id
-	// and home + guest team
+    private int intId;
 
-	public Game(){
-		
-	}
-	
-	public Game (int id, String date, String time, String location,  Team home, Team guest, int goalsH, int goalsG, boolean isPlayed) {
-		this.setIntId(id);
-		this.setTeamH(home);
-		this.setTeamG(guest);
-		this.setDate(date);
-		this.setTime(time);
-		this.setLocation(location);
-		this.setGoalsG(goalsG);
-		this.setGoalsH(goalsH);
-		this.setPlayed(isPlayed);
-	}
+    private String time;
+    private String date;
+    private String location;
+    private int goalsH;
+    private int goalsG;
+    private boolean isPlayed;
 
-	public void setIntId(int intId) {
-		this.intId = intId;
-	}
+    private Team teamH;
+    private Team teamG;
 
-	public int getIntId() {
-		return intId;
-	}
+    // Constructor with internal game id
+    // and home + guest team
 
-	public void setTeamH(Team teamH) {
-		this.teamH = teamH;
-	}
+    public Game() {
 
-	public Team getTeamH() {
-		return teamH;
-	}
+    }
 
-	public void setTeamG(Team teamG) {
-		this.teamG = teamG;
-	}
+    public Game(int id, String date, String time, String location, Team home, Team guest, int goalsH, int goalsG, boolean isPlayed) {
+        this.setIntId(id);
+        this.setTeamH(home);
+        this.setTeamG(guest);
+        this.setDate(date);
+        this.setTime(time);
+        this.setLocation(location);
+        this.setGoalsG(goalsG);
+        this.setGoalsH(goalsH);
+        this.setPlayed(isPlayed);
+    }
 
-	public Team getTeamG() {
-		return teamG;
-	}
+    public int getIntId() {
+        return intId;
+    }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+    public void setIntId(int intId) {
+        this.intId = intId;
+    }
 
-	public String getTime() {
-		return time;
-	}
+    public Team getTeamH() {
+        return teamH;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public void setTeamH(Team teamH) {
+        this.teamH = teamH;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public Team getTeamG() {
+        return teamG;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setTeamG(Team teamG) {
+        this.teamG = teamG;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public void setGoalsH(int goalsH) {
-		this.goalsH = goalsH;
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-	public int getGoalsH() {
-		return goalsH;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public void setGoalsG(int goalsG) {
-		this.goalsG = goalsG;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public int getGoalsG() {
-		return goalsG;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setPlayed(boolean isPlayed){
-		this.isPlayed = isPlayed;
-	}
-	
-	public boolean isPlayed() {
-		return isPlayed;
-	}
-	
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getGoalsH() {
+        return goalsH;
+    }
+
+    public void setGoalsH(int goalsH) {
+        this.goalsH = goalsH;
+    }
+
+    public int getGoalsG() {
+        return goalsG;
+    }
+
+    public void setGoalsG(int goalsG) {
+        this.goalsG = goalsG;
+    }
+
+    public boolean isPlayed() {
+        return isPlayed;
+    }
+
+    public void setPlayed(boolean isPlayed) {
+        this.isPlayed = isPlayed;
+    }
+
 }

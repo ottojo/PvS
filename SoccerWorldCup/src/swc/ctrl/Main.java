@@ -5,12 +5,12 @@ import swc.gui.Mainframe;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String [] args){
-		Mainframe mainFrame = new Mainframe(new SoccerWC());
-		mainFrame.setVisible(true);	
-	}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        Mainframe mainFrame = new Mainframe(new SoccerWC());
+        mainFrame.setVisible(true);
+    }
 
 }

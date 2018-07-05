@@ -12,6 +12,8 @@ import swc.data.SoccerWC;
 import swc.data.Team;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 import java.util.Vector;
 
@@ -297,19 +299,21 @@ public class ReadWC {
         in.close();
     }
 
-    public static void readFromXMLInputStream(InputStream i, SoccerWC worldCup) throws JDOMException, IOException {
-        SAXBuilder sxbuild = new SAXBuilder();
-        InputSource is = new InputSource(i);
-        Document doc = sxbuild.build(is);
-        processFile(doc, worldCup);
-    }
-
     public static void readFromXML(String filename, SoccerWC worldCup) throws JDOMException, IOException {
 
         SAXBuilder sxbuild = new SAXBuilder();
         InputSource is = new InputSource(filename);
         Document doc = sxbuild.build(is);
         worldCup.setFilename(filename);
+        processFile(doc, worldCup);
+    }
+
+    public static void readFromServer(String path, SoccerWC worldCup) throws IOException, JDOMException {
+        URL url = new URL(path);
+        URLConnection connection = url.openConnection();
+        SAXBuilder sxbuild = new SAXBuilder();
+        InputStream is = connection.getInputStream();
+        Document doc = sxbuild.build(is);
         processFile(doc, worldCup);
     }
 

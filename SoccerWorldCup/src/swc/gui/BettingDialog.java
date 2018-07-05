@@ -7,8 +7,8 @@ import swc.data.Tip;
 
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonValue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -17,54 +17,33 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class BettingDialog extends JDialog {
     private static final long serialVersionUID = 1324234L;
-
-    private static BorderCellRenderer createRenderer(Color color, Insets insets) {
-        BorderCellRenderer renderer = new BorderCellRenderer();
-        renderer.setColumnBorder(new LinesBorder(color, insets));
-        return renderer;
-    }
-
     private JButton addButton;
     private JComboBox<String> betterComboBox;
     private Vector<String> betters;
     private JButton closeButton;
     private JPanel gamesPanel;
     private Vector<Game> globalGameList;
-
     private Vector<DefaultTableModel> groupModels;
-
     private Vector<JTable> groupTables;
-
     private JScrollPane jScrollPane16;
-
     private JScrollPane jScrollPaneFinal;
-
     private JScrollPane jScrollPaneQuarter;
-
     private JScrollPane jScrollPaneSemi;
-
     private JScrollPane jScrollPaneThird;
-
     private JLabel label16;
-
     private JLabel labelFalse;
-
     private JLabel labelFinal;
-
     private JLabel labelLegend;
-
     private JLabel labelNames;
-
     private JLabel labelPerfect;
-
     private JLabel labelQuarter;
-
     private JLabel labelRight;
     private JLabel labelSemi;
     private JLabel labelStatus;
@@ -73,7 +52,6 @@ public class BettingDialog extends JDialog {
     private JPanel topBarPanel;
     private JButton uploadTipsButton;
     private SoccerWC worldCup;
-
     public BettingDialog(Frame owner, SoccerWC worldCup) {
         super(owner);
         this.worldCup = worldCup;
@@ -84,6 +62,12 @@ public class BettingDialog extends JDialog {
         betters = new Vector<String>();
         initComponents();
         drawMatches();
+    }
+
+    private static BorderCellRenderer createRenderer(Color color, Insets insets) {
+        BorderCellRenderer renderer = new BorderCellRenderer();
+        renderer.setColumnBorder(new LinesBorder(color, insets));
+        return renderer;
     }
 
     private void addButtonActionPerformed() {
@@ -171,6 +155,8 @@ public class BettingDialog extends JDialog {
             // && g.getTeamG().getName().length() > 3)
             // isFinished = true;
             // }
+
+            final Object[][] checkdata = data;
 
             DefaultTableModel currentModel;
             currentModel = new DefaultTableModel(data, columns) {
@@ -558,45 +544,53 @@ public class BettingDialog extends JDialog {
         uploadTipsToServer(tips, betterEmail, betterPin);
     }
 
-    /**
-     * Gets tips from a user from the web server
-     *
-     * @param betterEmail user email address
-     * @return tips
-     * @author Jonas Otto
-     */
     private Vector<Tip> downloadTipsFromServer(String betterEmail) {
-        Vector<Tip> tips = new Vector<>();
+        Vector<Tip> tips = new Vector<Tip>();
         try {
-            JsonReader jsonReader = Json.createReader(new URL("http://swc.dbis.info/api/Betting/" + betterEmail).openStream());
-            JsonArray jsonArray = jsonReader.readArray();
-            for (JsonValue value : jsonArray) {
-                tips.add(new Tip(value.asJsonObject().getInt("gameId"), value.asJsonObject().getInt("goalsHome"), value.asJsonObject().getInt("goalsGuest")));
+            URL url = new URL("http://swc.dbis.info/api/Betting/" + betterEmail);
+            JsonReader reader = Json.createReader(url.openStream());
+            JsonArray betsArray = reader.readArray();
+            for (JsonObject betObject : betsArray.getValuesAs(JsonObject.class)) {
+                int gameId = betObject.getInt("gameId");
+                int goalsHome = betObject.getInt("goalsHome");
+                int goalsGuest = betObject.getInt("goalsGuest");
+
+                Tip tip = new Tip();
+                tip.setGameId(gameId);
+                tip.setGoalsHome(goalsHome);
+                tip.setGoalsGuest(goalsGuest);
+                tips.add(tip);
             }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return tips;
     }
 
-    /**
-     * Uploads Tips
-     *
-     * @param tips        Tips to upload
-     * @param betterEmail User Email
-     * @param betterPin   User Pin
-     * @author Jonas Otto
-     */
     private void uploadTipsToServer(Vector<Tip> tips, String betterEmail, String betterPin) {
         for (Tip tip : tips) {
             try {
-                URL url = new URL(String.format("http://swc.dbis.info/api/Betting/%s/%s/%d/%d/%d", betterEmail, betterPin, tip.getGameId(), tip.getGoalsHome(), tip.getGoalsGuest()));
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                if (!new String(con.getInputStream().readAllBytes()).equals("true"))
-                    JOptionPane.showMessageDialog(this, "Error uploading Tips.", "Error", JOptionPane.ERROR_MESSAGE);
+                URL url = new URL("http://swc.dbis.info/api/Betting/" + betterEmail + "/" + betterPin + "/" + tip.getGameId() + "/" + tip.getGoalsHome() + "/" + tip.getGoalsGuest());
+                Scanner sc = new Scanner(url.openStream());
+                boolean result = sc.nextBoolean();
+
+                if (!result) {
+                    JOptionPane.showMessageDialog(this, "Wrong PIN for " + betterEmail, "PIN Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
+
     }
 }
