@@ -1,6 +1,7 @@
 package swc.gui;
 
 import swc.ctrl.CtrlGroup;
+import swc.ctrl.TipUploaderThread;
 import swc.data.Game;
 import swc.data.SoccerWC;
 import swc.data.Tip;
@@ -19,7 +20,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class BettingDialog extends JDialog {
@@ -52,6 +53,7 @@ public class BettingDialog extends JDialog {
     private JPanel topBarPanel;
     private JButton uploadTipsButton;
     private SoccerWC worldCup;
+
     public BettingDialog(Frame owner, SoccerWC worldCup) {
         super(owner);
         this.worldCup = worldCup;
@@ -571,26 +573,30 @@ public class BettingDialog extends JDialog {
         return tips;
     }
 
+    /**
+     * @author Jonas Otto
+     */
     private void uploadTipsToServer(Vector<Tip> tips, String betterEmail, String betterPin) {
+        ArrayList<TipUploaderThread> threadList = new ArrayList<>();
         for (Tip tip : tips) {
-            try {
-                URL url = new URL("http://swc.dbis.info/api/Betting/" + betterEmail + "/" + betterPin + "/" + tip.getGameId() + "/" + tip.getGoalsHome() + "/" + tip.getGoalsGuest());
-                Scanner sc = new Scanner(url.openStream());
-                boolean result = sc.nextBoolean();
-
-                if (!result) {
-                    JOptionPane.showMessageDialog(this, "Wrong PIN for " + betterEmail, "PIN Error", JOptionPane.ERROR_MESSAGE);
-                    break;
-                }
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            TipUploaderThread t = new TipUploaderThread(betterEmail, betterPin, tip);
+            t.start();
+            threadList.add(t);
         }
-
+        boolean allThreadsOk = true;
+        for (TipUploaderThread t : threadList) {
+            try {
+                t.join();
+            } catch (InterruptedException ignored) {
+            }
+            if (!t.getResult())
+                allThreadsOk = false;
+        }
+        if (!allThreadsOk)
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error uploading Tips to server",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
     }
 }
