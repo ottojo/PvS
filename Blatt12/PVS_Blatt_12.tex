@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+\usepackage{color}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\usepackage{listings}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\title{PVS Blatt 12}
+\author{Jonas Otto}
+\date{Juli 2018}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{section}{2}
+\section{Deadlocks}
+
+\paragraph{a)}
+Bei einer \lstinline{synchronized} Methode kann immer nur ein Thread auf das gesamte Objekt zugreifen, das Lock-Objekt ist dabei \lstinline{this}. Bei den \lstinline{synchronized} Blöcken hingegen ist ein Lock-Objekt explizit angegeben.
+
+\paragraph{b)}
+Es kommt an der Stelle \lstinline{synchronized (lock2)} zum Deadlock, nachdem beide Threads das erste \lstinline{lock1} haben.
+
+\paragraph{c)}
+Die Aufrufe von \lstinline{join()} auf allen Threads stellt sicher, dass das Programm erst beendet wird, wenn alle Threads jeweils beendet sind.
+
+\paragraph{d)}
+
+Damit die \lstinline{run()} Methode terminiert, muss der ausführende Thread sowohl \lstinline{lock1} und \lstinline{lock2} haben.
+
+Der Deadlock tritt auf, wenn \lstinline{Thread t1} das Lock auf \lstinline{l1} hat, und \lstinline{Thread t2} das Lock auf \lstinline{l2} hat, also jeweils das lokale \lstinline{lock1}. Dabei hat der jeweils andere \lstinline{Thread} dann das lokale \lstinline{lock2}, was aber zum terminieren nötig ist.
+
+\paragraph{e)}
+Zum Verhindern des Deadlocks muss die Zeile \\
+\lstinline{Thread t2 = new DeadLock(l2, l1);}\\
+zu\\
+\lstinline{Thread t2 = new DeadLock(l1, l2);}\\
+geändert werden.
+
+\end{document}
